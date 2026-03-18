@@ -65,7 +65,7 @@ export default function PortfolioWebsite() {
       title: "SoccerHub",
       description:
         "A soccer app that shows live scores, match schedules, standings, and team stats in one centralized platform.",
-      link: "https://soccerhub-kshabbur.base44.app",
+      link: "https://soccerhub.shop/",
       tags: ["React", "API", "Sports Data"],
       image: "/projects/soccerhub.png",
     },
@@ -73,7 +73,7 @@ export default function PortfolioWebsite() {
       title: "Shia Prayer Time App",
       description:
         "A mobile/web app providing accurate Shia prayer times, duas, and Islamic calendar features for daily use.",
-      link: "https://grip-night-96940360.figma.site",
+      link: "https://timeforprayer.space/",
       tags: ["Mobile", "API", "UI/UX"],
       image: "/projects/prayer-app.png",
     },
