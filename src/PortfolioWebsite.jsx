@@ -178,6 +178,27 @@ export default function PortfolioWebsite() {
 
   const workExperience = [
     {
+      role: "Technology Intern",
+      company: "10x.in",
+      date: "",
+      description:
+        "Completed an internship centered on practical, industry-aligned technology work and hands-on projects. Built experience applying modern AI and software tools to real-world problems while strengthening technical problem solving, project execution, and professional skills.",
+    },
+    {
+      role: "A.I. Rotation Program",
+      company: "Starter School",
+      date: "",
+      description:
+        "Completed a hands-on AI program focused on practical uses of artificial intelligence. Explored modern AI tools, developed seven applied AI skills for entrepreneurship, and learned how AI can be used to build, launch, and improve real projects and business ideas.",
+    },
+    {
+      role: "Co-op Program",
+      company: "Starter School",
+      date: "",
+      description:
+        "Completed industry-based co-op projects modeled after real company assignments. Worked with modern software and technology tools, practiced meeting project requirements and deadlines, and produced portfolio-ready work based on real-world business tasks.",
+    },
+    {
       role: "STEM Tutor / Mentor",
       company: "Community Programs",
       date: "2024 – Present",
@@ -651,9 +672,11 @@ export default function PortfolioWebsite() {
                     </h3>
                     <p className="text-indigo-400 font-medium">{job.company}</p>
                   </div>
-                  <span className="flex items-center gap-2 text-sm text-slate-500 shrink-0">
-                    <Calendar size={14} /> {job.date}
-                  </span>
+                  {job.date && (
+                    <span className="flex items-center gap-2 text-sm text-slate-500 shrink-0">
+                      <Calendar size={14} /> {job.date}
+                    </span>
+                  )}
                 </div>
                 <p className="text-slate-400 leading-relaxed mt-2">
                   {job.description}
