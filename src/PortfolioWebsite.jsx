@@ -474,6 +474,38 @@ export default function PortfolioWebsite() {
             </motion.div>
           ))}
         </motion.div>
+
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-12"
+        >
+          <div className="flex items-end justify-between gap-4 mb-5">
+            <div>
+              <h3 className="text-xl font-semibold text-white">All Skills</h3>
+              <p className="text-slate-500 text-sm mt-1">
+                Full list of technical, engineering, AI, web, and leadership skills.
+              </p>
+            </div>
+            <span className="text-xs text-slate-500">
+              {[...new Set(skillCategories.flatMap((category) => category.skills))].length} skills
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-2.5">
+            {[...new Set(skillCategories.flatMap((category) => category.skills))].map((skill) => (
+              <span
+                key={skill}
+                className="px-3.5 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-slate-300 text-sm hover:text-white hover:border-cyan-400/30 hover:bg-cyan-400/[0.05] transition-all duration-200"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       {/* Gradient Divider */}
