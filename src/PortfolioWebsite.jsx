@@ -62,6 +62,13 @@ export default function PortfolioWebsite() {
   /* ─── data ─── */
   const projects = [
     {
+      title: "The Growing Impact of Robotics Across Modern Industries",
+      description:
+        "Research paper examining how robotics improves efficiency, safety, accuracy, and performance across four case studies: Zipline medical-delivery drones, Roomba household cleaning robots, Waymo autonomous vehicles, and the da Vinci Surgical System. The paper also discusses challenges including regulation, cost, ethics, cybersecurity, employment, accountability, and public trust.",
+      tags: ["Robotics Research", "Autonomous Systems", "Healthcare Robotics", "Cybersecurity"],
+      image: null,
+    },
+    {
       title: "SoccerHub",
       description:
         "A soccer app that shows live scores, match schedules, standings, and team stats in one centralized platform.",
@@ -543,11 +550,22 @@ export default function PortfolioWebsite() {
             <motion.div key={index} variants={cardItem} whileHover={{ y: -6 }}>
               <div className="bg-slate-900/70 border border-white/10 rounded-3xl hover:border-indigo-400/40 transition-all duration-300 backdrop-blur-xl overflow-hidden group">
                 <div className="h-48 bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center p-8">
+                      <div className="text-center">
+                        <Cpu size={42} className="mx-auto text-cyan-300/80 mb-4" />
+                        <p className="text-xs uppercase tracking-[0.22em] text-cyan-300/70">
+                          Robotics Research Paper
+                        </p>
+                      </div>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
                   <div className="absolute bottom-4 left-6 flex gap-2">
                     {project.tags.map((tag, i) => (
