@@ -62,23 +62,52 @@ export default function PortfolioWebsite() {
   /* ─── data ─── */
   const projects = [
     {
+      title: "Project Abyss",
+      description:
+        "Built an immersive 3D web experience for a hackathon, combining interactive design, visual storytelling, and browser-based technology into a polished project.",
+      link: "https://abyss-immersion.replit.app",
+      tags: ["3D Web", "Hackathon", "Interactive Design", "Replit"],
+      image: null,
+    },
+    {
+      title: "AI Cricket Ball Retrieval Robot",
+      description:
+        "Designed a robotics concept for an automated cricket bowling setup. When the bowling machine runs out of balls, the robot uses a camera and sensors to detect and collect balls, raises them into the refill bin, exits the cricket lane for safety, and detects when another refill cycle is needed.",
+      tags: ["Robotics", "AI", "Computer Vision", "Sensors"],
+      image: null,
+    },
+    {
+      title: "Ascendra",
+      description:
+        "Created a startup concept during the SureStart summer bootcamp to help students under 18 discover internships, part-time jobs, programs, and other opportunities. The platform also included an AI-powered resume-building feature.",
+      tags: ["Startup", "AI", "Career Tech", "Product Development"],
+      image: null,
+    },
+    {
+      title: "North America Cricket League Website",
+      description:
+        "Created a website for the North America Cricket League to support league information, visibility, and community access to cricket-related updates and resources.",
+      tags: ["Web Development", "Sports Tech", "Community", "Responsive Design"],
+      image: null,
+    },
+    {
       title: "Kashish Apparel Website",
       description:
-        "Designed and built a modern e-commerce website for a fashion business, including product collections, customer accounts, wishlist and reviews, order management, an owner/admin dashboard, Supabase-backed data, and payment integration work. The project focused on creating a polished shopping experience that works across desktop and mobile.",
+        "Designed and built a modern e-commerce website for a fashion business, including product collections, customer accounts, wishlist and reviews, order management, an owner/admin dashboard, Supabase-backed data, and payment integration work.",
       tags: ["E-Commerce", "Supabase", "Full-Stack", "Responsive Design"],
       image: null,
     },
     {
       title: "RESA Construction Website",
       description:
-        "Created a professional service website for RESA Construction to showcase residential construction and remodeling services, including additions, new construction, kitchen and bathroom remodeling, electrical upgrades, lighting, rewiring, and EV charger installation. The site was designed to build trust, clearly present services, and help local customers contact the business.",
+        "Created a professional service website for RESA Construction to showcase residential construction, remodeling, electrical upgrades, lighting, rewiring, and EV charger installation while making it easy for customers to understand services and get in contact.",
       tags: ["Business Website", "Web Design", "Responsive UI", "Local Services"],
       image: null,
     },
     {
       title: "The Growing Impact of Robotics Across Modern Industries",
       description:
-        "Research paper examining how robotics improves efficiency, safety, accuracy, and performance across four case studies: Zipline medical-delivery drones, Roomba household cleaning robots, Waymo autonomous vehicles, and the da Vinci Surgical System. The paper also discusses challenges including regulation, cost, ethics, cybersecurity, employment, accountability, and public trust.",
+        "Research paper examining how robotics improves efficiency, safety, accuracy, and performance across Zipline medical-delivery drones, Roomba household robots, Waymo autonomous vehicles, and the da Vinci Surgical System, while also addressing regulation, ethics, cybersecurity, cost, and public trust.",
       tags: ["Robotics Research", "Autonomous Systems", "Healthcare Robotics", "Cybersecurity"],
       image: null,
     },
@@ -192,46 +221,53 @@ export default function PortfolioWebsite() {
 
   const workExperience = [
     {
+      role: "Part-Time Staff",
+      company: "NACL Sports Center",
+      date: "",
+      description:
+        "Supported day-to-day sports center operations and cricket programming while helping with facility setup, event support, and community activities.",
+    },
+    {
+      role: "Certified Umpire",
+      company: "North America Cricket League",
+      date: "",
+      description:
+        "Officiated cricket matches as a certified umpire, applying league rules, making in-game decisions, and helping maintain fair and organized competition.",
+    },
+    {
       role: "Technology Intern",
       company: "10x.in",
       date: "",
       description:
-        "Completed an internship centered on practical, industry-aligned technology work and hands-on projects. Built experience applying modern AI and software tools to real-world problems while strengthening technical problem solving, project execution, and professional skills.",
+        "Completed an internship centered on practical, industry-aligned technology work and hands-on projects, applying modern AI and software tools while strengthening technical problem solving and professional skills.",
+    },
+    {
+      role: "Vibe Marketer Cohort Intern",
+      company: "10x",
+      date: "",
+      description:
+        "Participated in a technology-focused marketing cohort exploring AI-assisted content, digital strategy, modern growth tools, and practical ways to market products and ideas.",
     },
     {
       role: "A.I. Rotation Program",
       company: "Starter School",
       date: "",
       description:
-        "Completed a hands-on AI program focused on practical uses of artificial intelligence. Explored modern AI tools, developed seven applied AI skills for entrepreneurship, and learned how AI can be used to build, launch, and improve real projects and business ideas.",
+        "Completed a hands-on AI program focused on practical uses of artificial intelligence, modern AI tools, entrepreneurship, and building real projects and business ideas.",
     },
     {
       role: "Co-op Program",
       company: "Starter School",
       date: "",
       description:
-        "Completed industry-based co-op projects modeled after real company assignments. Worked with modern software and technology tools, practiced meeting project requirements and deadlines, and produced portfolio-ready work based on real-world business tasks.",
+        "Completed industry-based co-op projects modeled after real company assignments, using modern software and technology tools while practicing deadlines, requirements, and portfolio-ready delivery.",
     },
     {
-      role: "STEM Tutor / Mentor",
-      company: "Community Programs",
-      date: "2024 – Present",
+      role: "Summer Bootcamp",
+      company: "SureStart",
+      date: "",
       description:
-        "Tutor kids and teens in math, science, and programming fundamentals. Create lesson plans and hands-on coding activities to make STEM concepts engaging and accessible.",
-    },
-    {
-      role: "Tech Volunteer & Event Organizer",
-      company: "Local Community Center",
-      date: "2023 – Present",
-      description:
-        "Help organize tech-related workshops and events, set up equipment, manage logistics, and assist with coordinating activities for youth programs.",
-    },
-    {
-      role: "Freelance Web Developer",
-      company: "Self-Employed",
-      date: "2023 – Present",
-      description:
-        "Design and build modern websites and web applications for small businesses and personal brands using React, Tailwind CSS, and Vite.",
+        "Completed a summer technology and entrepreneurship bootcamp and developed Ascendra, a startup concept helping students under 18 discover internships, jobs, and programs with an AI resume-building feature.",
     },
   ];
 
@@ -240,36 +276,72 @@ export default function PortfolioWebsite() {
     "Computer Science Projects",
     "STEM Research & Reports",
     "Engineering Assignments",
+    "Hackathons, Technology Conferences & Summits",
   ];
 
   const extracurriculars = [
     {
-      title: "Robotics / STEM Club",
-      role: "Active Member & Builder",
-      date: "2022 – Present",
+      title: "VEX Robotics",
+      role: "Robotics Team Member",
+      date: "",
       description:
-        "Design, build, and program robots for competitions. Work on Arduino-based projects and collaborate with teammates on engineering challenges.",
+        "Worked on competitive robotics through building, testing, programming, and iterating on robot systems while collaborating with teammates on engineering challenges.",
     },
     {
-      title: "Speech & Debate",
-      role: "Competitor",
-      date: "2023 – Present",
+      title: "MIT Beaver Works CRE[AT]E Challenge",
+      role: "Engineering Challenge Participant",
+      date: "",
       description:
-        "Compete in public speaking events covering technology and policy topics. Strengthen critical thinking, persuasive communication, and research skills.",
+        "Participated in the MIT Beaver Works CRE[AT]E Challenge with a team and mentor, applying engineering design, technical problem solving, prototyping, and collaboration.",
     },
     {
-      title: "Coding & Tech Projects",
-      role: "Independent Developer",
-      date: "2022 – Present",
+      title: "AI Ambassador",
+      role: "Applied AI Club Instructor & Community Educator",
+      date: "",
       description:
-        "Build personal programming projects including web apps, AI experiments, and automation scripts. Continuously learn new frameworks and tools.",
+        "Teach applied AI through a school club and outreach sessions in Bay Area communities and libraries, helping students understand practical AI tools, prompting, and real-world applications.",
     },
     {
-      title: "Leadership & Student Government",
-      role: "Student Leader",
-      date: "2023 – Present",
+      title: "Impact Initiative Organization",
+      role: "Treasurer & Marketing",
+      date: "",
       description:
-        "Serve in leadership roles organizing school events, fundraisers, and student-led initiatives. Develop planning, delegation, and team management skills.",
+        "Supported budgeting, financial organization, outreach, and marketing for a student-led impact organization focused on community initiatives.",
+    },
+    {
+      title: "Volunteer & Fundraising Club",
+      role: "Treasurer",
+      date: "",
+      description:
+        "Helped manage club funds, resources, and fundraising logistics while supporting service projects and community-focused initiatives.",
+    },
+    {
+      title: "U13 & U15 Cricket Hub",
+      role: "Team Captain",
+      date: "",
+      description:
+        "Led youth cricket teams by supporting teammates, helping organize play, communicating strategy, and encouraging teamwork and accountability.",
+    },
+    {
+      title: "Youth Soccer",
+      role: "U11 Captain & U14 Captain",
+      date: "",
+      description:
+        "Served as U11 soccer captain for two years and U14 soccer captain for three years, building leadership, communication, and team coordination skills.",
+    },
+    {
+      title: "8th Grade Class Representative",
+      role: "Student Representative",
+      date: "",
+      description:
+        "Represented classmates, communicated student concerns and ideas, and supported class and school activities.",
+    },
+    {
+      title: "Hackathons, Conferences & Summits",
+      role: "Participant",
+      date: "",
+      description:
+        "Competed in multiple hackathons and attended technology conferences and summits to build projects, learn new tools, and connect with broader technology and entrepreneurship communities.",
     },
   ];
 
@@ -283,24 +355,80 @@ export default function PortfolioWebsite() {
     },
     {
       title: "RISE Academy",
-      role: "Assistant Coach",
+      role: "Soccer Coach",
       date: "",
       description:
-        "Assisted in coaching U6, U8, U10, and U12 teams during practices, drills, and games. Worked directly with players on skills, teamwork, and game strategy, and helped organize equipment and activities.",
+        "Coached youth soccer for three years across U6, U8, U10, and U12 age groups, leading drills, helping players develop skills, supporting teamwork, and assisting with games and equipment.",
     },
     {
-      title: "Gilroy Lions Club",
-      role: "Weight Loss Consultant",
+      title: "Cricket Pitch & Ground Development",
+      role: "Community Sports Infrastructure Volunteer",
       date: "",
       description:
-        "Volunteered at a free community health clinic serving a low-income neighborhood. Measured and recorded patients’ weight, discussed results with them, and supported basic health education.",
+        "Helped create cricket pitches and grounds through hands-on work including laying cement, installing carpet, measuring and cutting grass, and preparing playing areas. Also contacted schools across the Bay Area to identify fields that could support league cricket pitches.",
+    },
+    {
+      title: "Help Aid Africa",
+      role: "Volunteer & Fundraising Support",
+      date: "",
+      description:
+        "Supported charitable fundraising and community-service efforts connected to Help Aid Africa, helping organize outreach and service-focused initiatives.",
+    },
+    {
+      title: "Audio & Visual Room / Community Media",
+      role: "Technology Volunteer",
+      date: "",
+      description:
+        "Helped install and maintain audio, video, camera, and other technology equipment for community programming. Assisted with camera movement, audio quality, and livestream production so people unable to attend in person could watch online.",
+    },
+    {
+      title: "Hospital Project",
+      role: "Community Service Volunteer",
+      date: "",
+      description:
+        "Supported a hospital-focused service project by preparing and organizing materials intended to encourage and support patients and community members receiving care.",
+    },
+    {
+      title: "Sirat Project",
+      role: "Prison Outreach Volunteer",
+      date: "",
+      description:
+        "Read letters and notecards from Muslim prisoners and helped respond to requests for advice, prayer mats, Qurans, religious resources, and other forms of support.",
+    },
+    {
+      title: "IT Support & Tech Support",
+      role: "Teacher Assistant",
+      date: "",
+      description:
+        "Worked under the guidance of the Director of Technology to assist with classroom and school technology, troubleshoot devices, support users, and help maintain reliable tech systems.",
+    },
+    {
+      title: "Sunday School",
+      role: "Teacher & Technology Support",
+      date: "",
+      description:
+        "Helped teach Sunday School students while also maintaining and supporting the technology used for classes, presentations, and community programming.",
+    },
+    {
+      title: "Old Device Drive",
+      role: "Technology Access Volunteer",
+      date: "",
+      description:
+        "Helped collect old electronic devices, refurbish usable technology, and prepare devices for donation to underprivileged communities including shelters, foster homes, and orphanages.",
+    },
+    {
+      title: "9th Grade Biology",
+      role: "Teacher Assistant",
+      date: "",
+      description:
+        "Supported a 9th grade biology class by helping students, assisting with classroom activities, and supporting the teacher with academic and organizational tasks.",
     },
     {
       title: "Al-Kisa Foundation",
       role: "Volunteer",
       date: "",
       description:
-        "Helped organize and prepare Islamic books and educational materials for children and families. Assisted with sorting, packing, and event support.",
+        "Helped organize and prepare Islamic books and educational materials for children and families, including sorting, packing, and event support.",
     },
     {
       title: "RISE Academy",
@@ -596,7 +724,7 @@ export default function PortfolioWebsite() {
                       <div className="text-center">
                         <Cpu size={42} className="mx-auto text-cyan-300/80 mb-4" />
                         <p className="text-xs uppercase tracking-[0.22em] text-cyan-300/70">
-                          Robotics Research Paper
+                          {project.tags?.[0] || "Featured Project"}
                         </p>
                       </div>
                     </div>
@@ -835,9 +963,11 @@ export default function PortfolioWebsite() {
                   <h3 className="text-lg font-semibold group-hover:text-rose-300 transition-colors">
                     {item.title}
                   </h3>
-                  <span className="text-xs text-slate-500 flex items-center gap-1 shrink-0 mt-1">
-                    <Calendar size={12} /> {item.date}
-                  </span>
+                  {item.date && (
+                    <span className="text-xs text-slate-500 flex items-center gap-1 shrink-0 mt-1">
+                      <Calendar size={12} /> {item.date}
+                    </span>
+                  )}
                 </div>
                 <p className="text-rose-400/80 text-sm font-medium mb-3">
                   {item.role}
