@@ -105,10 +105,20 @@ export default function PortfolioWebsite() {
 
   const skillCategories = [
     {
-      title: "AI & Intelligent Systems",
+      title: "Core Top Skills",
       icon: <Cpu size={20} />,
       skills: [
         "Artificial Intelligence (AI)",
+        "Robotics",
+        "Cybersecurity",
+        "Software Development",
+        "Web Services",
+      ],
+    },
+    {
+      title: "AI & Intelligent Systems",
+      icon: <Sparkles size={20} />,
+      skills: [
         "Generative AI",
         "Machine Learning",
         "Prompt Engineering",
@@ -122,7 +132,6 @@ export default function PortfolioWebsite() {
       title: "Software & Application Development",
       icon: <Code2 size={20} />,
       skills: [
-        "Software Development",
         "Application Development",
         "Python",
         "C++",
@@ -137,7 +146,6 @@ export default function PortfolioWebsite() {
       title: "Robotics & Engineering",
       icon: <Wrench size={20} />,
       skills: [
-        "Robotics",
         "Robot Programming",
         "Robot Operating System (ROS)",
         "Engineering",
@@ -147,28 +155,16 @@ export default function PortfolioWebsite() {
       ],
     },
     {
-      title: "Web & Cyber",
-      icon: <Sparkles size={20} />,
-      skills: [
-        "Web Services",
-        "Web Development",
-        "Web Design",
-        "Cybersecurity",
-        "Digital Marketing",
-        "Git & GitHub",
-      ],
-    },
-    {
-      title: "Leadership & Community",
+      title: "Web, Leadership & Community",
       icon: <Users size={20} />,
       skills: [
+        "Web Development",
+        "Web Design",
+        "Digital Marketing",
         "Leadership",
         "Leadership Development",
         "Community Outreach",
         "Sports Coaching",
-        "Public Speaking",
-        "Team Leadership",
-        "Project Management",
       ],
     },
   ];
@@ -237,39 +233,39 @@ export default function PortfolioWebsite() {
 
   const volunteering = [
     {
-      title: "Shia Association of Bay Area (SABA)",
+      title: "Shia Association of Bay Area",
       role: "Community Volunteer",
-      date: "Jan 2021 – Present",
+      date: "",
       description:
-        "Support community programs and events, including children’s and youth activities, food preparation and serving, kitchen assistance, event organization, and guest support.",
+        "Supported community programs and events, including children’s and youth activities, food preparation and serving, kitchen assistance, event organization, and guest support.",
     },
     {
       title: "RISE Academy",
       role: "Assistant Coach",
-      date: "Aug 2023 – Present",
+      date: "",
       description:
-        "Assist with U6, U8, U10, and U12 teams during practices, drills, and games. Help players develop skills, teamwork, and game strategy while organizing equipment and activities.",
+        "Assisted in coaching U6, U8, U10, and U12 teams during practices, drills, and games. Worked directly with players on skills, teamwork, and game strategy, and helped organize equipment and activities.",
     },
     {
       title: "Gilroy Lions Club",
-      role: "Weight Loss Consultant — Volunteer Clinic",
-      date: "Jun 2026 – Jul 2026",
+      role: "Weight Loss Consultant",
+      date: "",
       description:
         "Volunteered at a free community health clinic serving a low-income neighborhood. Measured and recorded patients’ weight, discussed results with them, and supported basic health education.",
     },
     {
       title: "Al-Kisa Foundation",
       role: "Volunteer",
-      date: "Jun 2018 – Aug 2018",
+      date: "",
       description:
-        "Helped organize and prepare Islamic books and educational materials for children and families, including sorting, packing, and event support.",
+        "Helped organize and prepare Islamic books and educational materials for children and families. Assisted with sorting, packing, and event support.",
     },
     {
       title: "RISE Academy",
       role: "Treasurer",
-      date: "Aug 2024 – Jun 2026",
+      date: "",
       description:
-        "Managed resources for community-service initiatives by tracking materials, maintaining records, and helping coordinate volunteer efforts and fundraising activities.",
+        "Managed and organized resources for community service initiatives by tracking materials, maintaining records, and helping coordinate volunteer efforts.",
     },
   ];
 
@@ -699,9 +695,11 @@ export default function PortfolioWebsite() {
                   <h3 className="text-lg font-semibold group-hover:text-emerald-300 transition-colors">
                     {item.title}
                   </h3>
-                  <span className="text-xs text-slate-500 flex items-center gap-1 shrink-0 mt-1">
-                    <Calendar size={12} /> {item.date}
-                  </span>
+                  {item.date && (
+                    <span className="text-xs text-slate-500 flex items-center gap-1 shrink-0 mt-1">
+                      <Calendar size={12} /> {item.date}
+                    </span>
+                  )}
                 </div>
                 <p className="text-emerald-400/80 text-sm font-medium mb-3">
                   {item.role}
