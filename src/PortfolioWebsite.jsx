@@ -237,32 +237,39 @@ export default function PortfolioWebsite() {
 
   const volunteering = [
     {
-      title: "Saba Islamic Center",
-      role: "Youth Volunteer",
-      date: "2021 – Present",
+      title: "Shia Association of Bay Area (SABA)",
+      role: "Community Volunteer",
+      date: "Jan 2021 – Present",
       description:
-        "Volunteer at community events, assist with setup and coordination, and help manage youth programming and religious education activities.",
+        "Support community programs and events, including children’s and youth activities, food preparation and serving, kitchen assistance, event organization, and guest support.",
     },
     {
-      title: "Kids Program Volunteering",
-      role: "Teaching Assistant / Mentor",
-      date: "2022 – Present",
+      title: "RISE Academy",
+      role: "Assistant Coach",
+      date: "Aug 2023 – Present",
       description:
-        "Help teach young children Islamic studies, Quran recitation, and basic academic skills. Create fun and engaging lesson plans for kids.",
+        "Assist with U6, U8, U10, and U12 teams during practices, drills, and games. Help players develop skills, teamwork, and game strategy while organizing equipment and activities.",
     },
     {
-      title: "Al Kisa Publications",
-      role: "Content & Distribution Volunteer",
-      date: "2022 – Present",
+      title: "Gilroy Lions Club",
+      role: "Weight Loss Consultant — Volunteer Clinic",
+      date: "Jun 2026 – Jul 2026",
       description:
-        "Support the publication and distribution of Islamic educational materials. Help with packaging, outreach events, and community engagement.",
+        "Volunteered at a free community health clinic serving a low-income neighborhood. Measured and recorded patients’ weight, discussed results with them, and supported basic health education.",
     },
     {
-      title: "Community Service & Event Support",
-      role: "General Volunteer",
-      date: "2021 – Present",
+      title: "Al-Kisa Foundation",
+      role: "Volunteer",
+      date: "Jun 2018 – Aug 2018",
       description:
-        "Participate in food drives, cleanup events, neighborhood outreach, and charity fundraisers. Dedicated to giving back to the local community.",
+        "Helped organize and prepare Islamic books and educational materials for children and families, including sorting, packing, and event support.",
+    },
+    {
+      title: "RISE Academy",
+      role: "Treasurer",
+      date: "Aug 2024 – Jun 2026",
+      description:
+        "Managed resources for community-service initiatives by tracking materials, maintaining records, and helping coordinate volunteer efforts and fundraising activities.",
     },
   ];
 
