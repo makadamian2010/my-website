@@ -221,6 +221,13 @@ export default function PortfolioWebsite() {
 
   const workExperience = [
     {
+      role: "Event Setup Staff",
+      company: "Kennetted Jumps",
+      date: "",
+      description:
+        "Worked at events helping with setup and breakdown of inflatable jump houses and event equipment. Assisted with heavy lifting, loading and unloading vehicles, transporting equipment, site setup, cleanup, and preparing event spaces before and after activities.",
+    },
+    {
       role: "Part-Time Staff",
       company: "NACL Sports Center",
       date: "",
