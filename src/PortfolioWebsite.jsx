@@ -288,6 +288,20 @@ export default function PortfolioWebsite() {
 
   const extracurriculars = [
     {
+      title: "FTC Robotics Team",
+      role: "Team Member",
+      date: "",
+      description:
+        "Participated on an FTC robotics team, contributing to robot design, building, programming, testing, autonomous routines, sensors, and competition preparation while collaborating with teammates on engineering challenges.",
+    },
+    {
+      title: "FRC Robotics Team",
+      role: "Team Member",
+      date: "",
+      description:
+        "Participated on an FRC robotics team, gaining experience with larger-scale competition robotics, engineering design, fabrication, programming, troubleshooting, teamwork, and event preparation.",
+    },
+    {
       title: "VEX Robotics",
       role: "Robotics Team Member",
       date: "",
