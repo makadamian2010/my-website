@@ -62,6 +62,20 @@ export default function PortfolioWebsite() {
   /* ─── data ─── */
   const projects = [
     {
+      title: "Kashish Apparel Website",
+      description:
+        "Designed and built a modern e-commerce website for a fashion business, including product collections, customer accounts, wishlist and reviews, order management, an owner/admin dashboard, Supabase-backed data, and payment integration work. The project focused on creating a polished shopping experience that works across desktop and mobile.",
+      tags: ["E-Commerce", "Supabase", "Full-Stack", "Responsive Design"],
+      image: null,
+    },
+    {
+      title: "RESA Construction Website",
+      description:
+        "Created a professional service website for RESA Construction to showcase residential construction and remodeling services, including additions, new construction, kitchen and bathroom remodeling, electrical upgrades, lighting, rewiring, and EV charger installation. The site was designed to build trust, clearly present services, and help local customers contact the business.",
+      tags: ["Business Website", "Web Design", "Responsive UI", "Local Services"],
+      image: null,
+    },
+    {
       title: "The Growing Impact of Robotics Across Modern Industries",
       description:
         "Research paper examining how robotics improves efficiency, safety, accuracy, and performance across four case studies: Zipline medical-delivery drones, Roomba household cleaning robots, Waymo autonomous vehicles, and the da Vinci Surgical System. The paper also discusses challenges including regulation, cost, ethics, cybersecurity, employment, accountability, and public trust.",
