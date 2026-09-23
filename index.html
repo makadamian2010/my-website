@@ -102,18 +102,17 @@
   footer{padding:28px 0 42px;color:#6f8097;text-align:center}
   @media(max-width:900px){.links{display:none}.hero{grid-template-columns:1fr;padding-top:80px}.visual{max-width:640px;margin:auto}.section-head{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
   @media(max-width:560px){.wrap{width:min(100% - 24px,1180px)}nav{width:calc(100% - 16px)}h1{font-size:clamp(3rem,16vw,4.2rem)}.hero{text-align:center}.cta{display:grid}.btn{width:100%}.visual{border-radius:24px}.chip{font-size:.64rem;padding:8px 9px}.row{grid-template-columns:42px 1fr;padding:18px}.icon{width:40px;height:40px}.card{padding:20px}.brand small{display:none}}
+.tab-panel{display:none}.tab-panel.active{display:block}.tab-panel.active.hero{display:grid}.tab-btn.active{color:#fff!important;background:rgba(103,232,249,.12)!important;border:1px solid rgba(103,232,249,.28)}.settings{position:relative}.settings-menu{display:none;position:absolute;right:0;top:42px;width:230px;padding:12px;border:1px solid var(--line);border-radius:14px;background:#07101ff2;backdrop-filter:blur(18px)}.settings.open .settings-menu{display:grid;gap:9px}.settings-menu button{border:0;border-radius:9px;background:transparent;color:var(--text);padding:9px;text-align:left}.settings-menu button:hover{background:rgba(255,255,255,.08)}.profile{display:grid;grid-template-columns:.7fr 1.3fr;gap:40px;align-items:center}.avatar{min-height:300px;border:1px solid var(--line);border-radius:24px;display:grid;place-items:center;background:radial-gradient(circle,rgba(103,232,249,.15),transparent 55%),var(--panel)}.avatar b{font-size:4rem;color:var(--cyan)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left}.form-grid label{display:grid;gap:7px;color:var(--muted);font-size:.85rem}.form-grid input,.form-grid textarea{background:#07101f;border:1px solid var(--line);border-radius:10px;padding:12px;color:white;font:inherit}.full{grid-column:1/-1}@media(max-width:700px){.profile,.form-grid{grid-template-columns:1fr}.links{display:flex;overflow:auto;max-width:72vw}.links a{white-space:nowrap}.hero.tab-panel.active{display:grid}}
 </style>
 </head>
 <body>
 <nav>
   <div class="brand"><div class="logo">SK</div><div><strong>Shabbur Khan</strong><small>engineering portfolio</small></div></div>
-  <div class="links">
-    <a href="#home">Home</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#robotics">Robotics</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
-  </div>
+  <div class="links"><a class="tab-btn active" href="#home" data-tab="home">Home</a><a class="tab-btn" href="#about" data-tab="about">About Me</a><a class="tab-btn" href="#projects" data-tab="projects">Work</a><a class="tab-btn" href="#experience" data-tab="experience">Experience</a><a class="tab-btn" href="#skills" data-tab="skills">Skills</a><a class="tab-btn" href="#contact" data-tab="contact">Contact</a><a class="tab-btn" href="#ask" data-tab="ask">Ask Me</a><div class="settings"><button id="settingsButton" class="btn secondary" style="padding:8px 10px">⚙</button><div class="settings-menu" id="settingsMenu"><button id="themeButton">☀ Light mode</button><button id="contrastButton">◉ Color Blind Mode</button><button id="audioButton">🔇 Ambient audio off</button></div></div></div>
 </nav>
 
 <main id="home" class="wrap">
-  <section class="hero">
+  <section class="hero tab-panel active" data-panel="home">
     <div>
       <div class="pill"><i></i> Open to tech internships & opportunities</div>
       <div class="kicker">AI • ROBOTICS • CYBERSECURITY • SOFTWARE • WEB</div>
@@ -132,7 +131,7 @@
     </div>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="tab-panel" data-panel="projects">
     <div class="section-head"><div><div class="label">01 / SELECTED WORK</div><h2>Projects across the <span class="grad">tech stack.</span></h2></div><p>Robotics, research, web products, startups, and interactive builds — organized for recruiters while keeping the portfolio visually clean.</p></div>
     <div class="grid">
       <article class="card"><div class="label">3D WEB / HACKATHON</div><h3>Project Abyss</h3><p>Immersive 3D browser experience combining interactive design, visual storytelling, and web technology.</p><div class="tags"><span class="tag">3D Web</span><span class="tag">Hackathon</span><span class="tag">Replit</span></div></article>
@@ -150,7 +149,7 @@
     </div>
   </section>
 
-  <section id="experience">
+  <section id="experience" class="tab-panel" data-panel="experience">
     <div class="section-head"><div><div class="label">02 / EXPERIENCE + PROGRAMS</div><h2>Learning by <span class="grad">doing.</span></h2></div><p>Internships, programs, work, teaching, and hands-on responsibilities that demonstrate reliability, technical curiosity, and real-world execution.</p></div>
     <div class="timeline">
       <div class="row"><div class="icon">🎯</div><div><div class="role">Technology Intern</div><h3>10x.in</h3><p>Industry-aligned technology work using modern AI and software tools while building problem-solving and project-execution skills.</p></div></div>
@@ -164,7 +163,7 @@
     </div>
   </section>
 
-  <section id="robotics">
+  <section id="robotics" class="tab-panel" data-panel="experience">
     <div class="section-head"><div><div class="label">03 / ROBOTICS + ENGINEERING</div><h2>Building systems that <span class="grad">move.</span></h2></div><p>Competitive robotics, engineering challenges, AI-enabled physical systems, and hands-on team experience.</p></div>
     <div class="grid">
       <article class="card"><h3>VEX Robotics</h3><p>Competitive robotics experience in building, testing, programming, iterating, and collaborating on engineering challenges.</p></article>
@@ -174,7 +173,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="tab-panel" data-panel="experience">
     <div class="section-head"><div><div class="label">04 / LEADERSHIP + EXTRACURRICULARS</div><h2>Technical work with <span class="grad">leadership.</span></h2></div><p>Teaching, team leadership, outreach, sports, and student organizations that strengthen communication and responsibility.</p></div>
     <div class="grid">
       <article class="card"><h3>AI Ambassador</h3><p>Teach an Applied AI club at school and run AI outreach in Bay Area communities and libraries, covering practical AI tools, prompting, and real-world applications.</p></article>
@@ -187,7 +186,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="tab-panel" data-panel="experience">
     <div class="section-head"><div><div class="label">05 / VOLUNTEERING + COMMUNITY</div><h2>Technology and service with <span class="grad">impact.</span></h2></div><p>Community service, youth development, tech access, teaching, outreach, and hands-on infrastructure work.</p></div>
     <div class="grid">
       <article class="card"><h3>Shia Association of Bay Area</h3><p>Community programs, youth activities, food preparation/serving, event organization, kitchen assistance, and guest support.</p></article>
@@ -205,14 +204,15 @@
     </div>
   </section>
 
-  <section id="skills">
+  <section id="skills" class="tab-panel" data-panel="skills">
     <div class="section-head"><div><div class="label">06 / SKILLS</div><h2>Across AI, robotics, software, web, and <span class="grad">leadership.</span></h2></div><p>A recruiter-friendly full skills list without duplicates.</p></div>
     <div class="skills">
       <span class="skill">Artificial Intelligence (AI)</span><span class="skill">Generative AI</span><span class="skill">Machine Learning</span><span class="skill">Agentic AI Development</span><span class="skill">Prompt Engineering</span><span class="skill">Claude Code</span><span class="skill">Anthropic Claude</span><span class="skill">ChatGPT for Web Developers</span><span class="skill">Robotics</span><span class="skill">Robot Programming</span><span class="skill">Robot Operating System (ROS)</span><span class="skill">Cybersecurity</span><span class="skill">Software Development</span><span class="skill">Application Development</span><span class="skill">Web Services</span><span class="skill">Web Development</span><span class="skill">Web Design</span><span class="skill">Python</span><span class="skill">C++</span><span class="skill">JavaScript</span><span class="skill">TypeScript</span><span class="skill">Object-Oriented Programming (OOP)</span><span class="skill">Object-Oriented Languages</span><span class="skill">Game Development</span><span class="skill">Engineering</span><span class="skill">AutoCAD</span><span class="skill">Computer-Aided Design (CAD)</span><span class="skill">Research & Development (R&D)</span><span class="skill">Digital Marketing</span><span class="skill">Leadership</span><span class="skill">Leadership Development</span><span class="skill">Community Outreach</span><span class="skill">Sports Coaching</span>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="about" class="tab-panel" data-panel="about"><div class="section-head"><div><div class="label">01 / ABOUT ME</div><h2>Engineering ideas into <span class="grad">impact.</span></h2></div><p>Student engineer, developer, and researcher building intelligent systems with real-world purpose.</p></div><div class="profile"><div class="avatar"><b>SK</b><small>Profile photo placeholder</small></div><div><h3>Shabbur Khan</h3><p class="sub">I am a student engineer and developer passionate about Artificial Intelligence, Robotics, Cybersecurity, Software Development, and Web Technologies. I enjoy building intelligent systems, researching emerging technologies, and creating software solutions that solve real-world problems.</p><div class="skills"><span class="skill">LLMs</span><span class="skill">Agentic AI</span><span class="skill">Machine Learning</span><span class="skill">Robotics</span><span class="skill">Cybersecurity</span><span class="skill">Web Development</span></div></div></div></section>
+  <section id="contact" class="tab-panel" data-panel="contact">
     <div class="contact">
       <div class="label">07 / CONTACT</div>
       <h2 style="font-size:clamp(2.5rem,5vw,4.5rem);margin:0 0 18px;letter-spacing:-.05em">Ready for the next <span class="grad">challenge.</span></h2>
@@ -221,7 +221,9 @@
     </div>
   </section>
 
+  <section id="ask" class="tab-panel" data-panel="ask"><div class="contact"><div class="label">08 / ASK ME</div><h2>Start a <span class="grad">conversation.</span></h2><form class="form-grid" id="questionForm"><label>Name *<input required name="name"></label><label>Email Address *<input required type="email" name="email"></label><label>Company / Organization<input name="company"></label><label>Reason for Contact<input name="reason"></label><label class="full">Question / Message *<textarea required name="message" rows="6"></textarea></label><div class="full"><button class="btn primary" type="submit">Send Question</button> <span id="formStatus"></span></div></form></div></section>
+
   <footer>© 2026 Shabbur Khan — AI • Robotics • Cybersecurity • Software • Web</footer>
-</main>
+</main><script>const tabs=document.querySelectorAll('.tab-btn'),panels=document.querySelectorAll('[data-panel]');function showTab(id){panels.forEach(p=>p.classList.toggle('active',p.dataset.panel===id));tabs.forEach(t=>t.classList.toggle('active',t.dataset.tab===id));history.replaceState(null,'','#'+id);scrollTo({top:0,behavior:'smooth'})}tabs.forEach(t=>t.onclick=e=>{e.preventDefault();showTab(t.dataset.tab)});document.getElementById('settingsButton').onclick=()=>document.querySelector('.settings').classList.toggle('open');document.getElementById('themeButton').onclick=()=>document.body.classList.toggle('light');document.getElementById('contrastButton').onclick=()=>document.body.classList.toggle('contrast');document.getElementById('audioButton').onclick=e=>e.target.textContent=e.target.textContent.includes('off')?'🔊 Ambient audio on':'🔇 Ambient audio off';document.getElementById('questionForm').onsubmit=e=>{e.preventDefault();let f=new FormData(e.target),n=f.get('name'),b=`Name: ${n}\nEmail: ${f.get('email')}\nCompany: ${f.get('company')}\nReason: ${f.get('reason')}\nQuestion: ${f.get('message')}`;location.href='mailto:kshabbur@gmail.com?subject='+encodeURIComponent('New Portfolio Question From '+n)+'&body='+encodeURIComponent(b);document.getElementById('formStatus').textContent='Thank you for reaching out! I will get back to you soon.'};</script>
 </body>
 </html>
