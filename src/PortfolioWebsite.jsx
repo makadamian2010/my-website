@@ -7,11 +7,6 @@ import Research from './sections/Research';
 import { Skills } from './sections/Journey';
 import './lab.css';
 
-// Kept for the archived source data retained during the main-branch merge.
-const fadeUp = {};
-const stagger = {};
-const cardItem = {};
-
 const navigation = ['Home', 'About Me', 'Work', 'Experience', 'Robotics', 'Skills', 'Contact', 'Ask Me'];
 const interests = ['Artificial Intelligence', 'Machine Learning', 'Large Language Models (LLMs)', 'Agentic AI', 'Robotics', 'Cybersecurity', 'Software Engineering', 'Web Development', 'Research & Development', 'Entrepreneurship'];
 const experience = [
