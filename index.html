@@ -1,17 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="theme-color" content="#080e0e" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Shabbur Khan's portfolio: AI, robotics, cybersecurity, software, research, and web development." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <title>Shabbur Khan — Personal Innovation Lab</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shabbur Khan — Final Portfolio Preview</title>
+<style>
+  :root{
+    --bg:#050915;
+    --panel:rgba(9,16,32,.78);
+    --panel2:rgba(15,25,46,.66);
+    --line:rgba(148,163,184,.16);
+    --text:#f7f9ff;
+    --muted:#94a3b8;
+    --cyan:#67e8f9;
+    --blue:#60a5fa;
+    --violet:#8b5cf6;
+    --green:#34d399;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:
+      radial-gradient(circle at 16% 8%, rgba(59,130,246,.14), transparent 26%),
+      radial-gradient(circle at 84% 12%, rgba(139,92,246,.12), transparent 28%),
+      linear-gradient(180deg,#040814 0%,#07101f 50%,#040814 100%);
+    color:var(--text);
+  }
+  body:before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:-1;
+    background-image:
+      linear-gradient(rgba(148,163,184,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(148,163,184,.035) 1px,transparent 1px);
+    background-size:52px 52px;
+    mask-image:linear-gradient(to bottom,black,transparent 85%);
+  }
+  a{text-decoration:none;color:inherit}
+  .wrap{width:min(1180px,calc(100% - 36px));margin:0 auto}
+  nav{
+    position:sticky;top:12px;z-index:50;margin:12px auto 0;
+    width:min(1180px,calc(100% - 24px));
+    border:1px solid var(--line);background:rgba(3,7,18,.74);backdrop-filter:blur(22px);
+    border-radius:22px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;
+    box-shadow:0 18px 60px rgba(0,0,0,.25)
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-weight:900;
+    background:linear-gradient(135deg,rgba(96,165,250,.2),rgba(139,92,246,.25));border:1px solid var(--line)}
+  .brand small{display:block;color:#71819c;margin-top:2px}
+  .links{display:flex;gap:10px}
+  .links a{padding:10px 12px;border-radius:12px;color:#8fa0b8;font-size:.88rem;font-weight:700}
+  .links a:hover{background:rgba(255,255,255,.05);color:white}
+  .hero{min-height:88vh;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;padding:90px 0 70px}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;
+    background:rgba(255,255,255,.03);color:#a8b5c8;font-weight:700;font-size:.78rem}
+  .pill i{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 14px #4ade80}
+  .kicker{margin:24px 0 14px;color:#7be7f6;letter-spacing:.18em;font-weight:800;font-size:.78rem}
+  h1{margin:0;font-size:clamp(3.6rem,8vw,7rem);line-height:.95;letter-spacing:-.06em}
+  .grad{background:linear-gradient(100deg,#fff 8%,#8beafa 45%,#8b7cff 82%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:1.08rem;line-height:1.8;color:#97a6bd;max-width:660px;margin:26px 0 30px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{padding:14px 18px;border-radius:13px;font-weight:800;font-size:.9rem;border:1px solid var(--line)}
+  .btn.primary{background:linear-gradient(135deg,#a4f5ff,#68c9ff 45%,#9f91ff);color:#041018}
+  .btn.secondary{background:rgba(255,255,255,.035);color:#dbe5f0}
+  .visual{position:relative;aspect-ratio:1;border-radius:34px;border:1px solid var(--line);
+    background:radial-gradient(circle at center,rgba(103,232,249,.11),transparent 24%),
+      linear-gradient(145deg,rgba(20,31,53,.88),rgba(6,11,24,.78));
+    overflow:hidden;box-shadow:0 50px 120px rgba(0,0,0,.32);transform:perspective(1100px) rotateX(4deg) rotateY(-5deg)}
+  .floor{position:absolute;left:-25%;right:-25%;bottom:-35%;height:75%;transform:perspective(420px) rotateX(62deg);
+    transform-origin:center top;background-image:linear-gradient(rgba(94,231,247,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(94,231,247,.16) 1px,transparent 1px);
+    background-size:34px 34px}
+  .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:132px;height:132px;border-radius:30px;
+    display:grid;place-items:center;align-content:center;gap:8px;background:linear-gradient(145deg,rgba(94,231,247,.12),rgba(139,124,255,.14));
+    border:1px solid rgba(94,231,247,.28);box-shadow:0 0 80px rgba(94,231,247,.18);font-size:2.2rem}
+  .core span{font:700 .74rem monospace;color:#79ddea}
+  .orbit{position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid rgba(112,225,244,.16)}
+  .o1{width:240px;height:240px;margin:-120px}
+  .o2{width:345px;height:345px;margin:-172px;border-color:rgba(139,124,255,.18)}
+  .o3{width:440px;height:440px;margin:-220px;border-style:dashed;border-color:rgba(255,255,255,.08)}
+  .chip{position:absolute;padding:10px 12px;border-radius:13px;border:1px solid var(--line);background:rgba(7,13,27,.82);font-weight:800;font-size:.77rem;color:#c8d5e7}
+  .ai{top:20%;left:10%}.robot{top:18%;right:8%}.cyber{bottom:18%;left:9%}.soft{bottom:14%;right:10%}
+  section{padding:90px 0}
+  .section-head{display:grid;grid-template-columns:1fr .8fr;gap:50px;align-items:end;margin-bottom:34px}
+  .section-head h2{margin:0;font-size:clamp(2.3rem,4.5vw,4.2rem);letter-spacing:-.045em}
+  .section-head p{color:#8fa0b6;line-height:1.7;margin:0}
+  .label{color:#76e5f3;font-size:.72rem;letter-spacing:.18em;font-weight:800;margin-bottom:10px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .card{position:relative;padding:24px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(20,29,48,.74),rgba(7,12,25,.78));
+    min-height:220px;overflow:hidden}
+  .card:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;right:-80px;top:-80px;background:#67e8f9;filter:blur(52px);opacity:.09}
+  .card h3{margin:7px 0 9px;font-size:1.22rem}
+  .card p{margin:0;color:#8fa0b6;line-height:1.65;font-size:.9rem}
+  .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}.tag{font-size:.68rem;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.035);border:1px solid var(--line);color:#aab7c8}
+  .timeline{display:grid;gap:14px}.row{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:22px;border:1px solid var(--line);border-radius:20px;background:rgba(7,13,27,.62)}
+  .icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(94,231,247,.08);border:1px solid rgba(94,231,247,.14)}
+  .row h3{margin:3px 0 7px}.role{color:#74dce9;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .skills{display:flex;gap:9px;flex-wrap:wrap}.skill{padding:9px 11px;border-radius:10px;background:rgba(255,255,255,.035);border:1px solid var(--line);color:#b6c1d0;font-size:.75rem;font-weight:700}
+  .contact{padding:72px 28px;text-align:center;border:1px solid var(--line);border-radius:28px;background:radial-gradient(circle at 50% 0%,rgba(94,231,247,.09),transparent 35%),rgba(8,14,27,.64)}
+  footer{padding:28px 0 42px;color:#6f8097;text-align:center}
+  @media(max-width:900px){.links{display:none}.hero{grid-template-columns:1fr;padding-top:80px}.visual{max-width:640px;margin:auto}.section-head{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+  @media(max-width:560px){.wrap{width:min(100% - 24px,1180px)}nav{width:calc(100% - 16px)}h1{font-size:clamp(3rem,16vw,4.2rem)}.hero{text-align:center}.cta{display:grid}.btn{width:100%}.visual{border-radius:24px}.chip{font-size:.64rem;padding:8px 9px}.row{grid-template-columns:42px 1fr;padding:18px}.icon{width:40px;height:40px}.card{padding:20px}.brand small{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand"><div class="logo">SK</div><div><strong>Shabbur Khan</strong><small>engineering portfolio</small></div></div>
+  <div class="links">
+    <a href="#home">Home</a><a href="#projects">Work</a><a href="#experience">Experience</a><a href="#robotics">Robotics</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="home" class="wrap">
+  <section class="hero">
+    <div>
+      <div class="pill"><i></i> Open to tech internships & opportunities</div>
+      <div class="kicker">AI • ROBOTICS • CYBERSECURITY • SOFTWARE • WEB</div>
+      <h1>I build technology that <span class="grad">thinks, moves, and solves.</span></h1>
+      <p class="sub">Student engineer and developer exploring intelligent systems, autonomous robotics, secure technology, web platforms, and interactive software — with a focus on turning ideas into real, usable projects.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">Explore my work</a>
+        <a class="btn secondary" href="mailto:kshabbur@gmail.com">Contact me</a>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="floor"></div>
+      <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div>
+      <div class="core">⚙️<span>build()</span></div>
+      <div class="chip ai">🧠 AI</div><div class="chip robot">🤖 Robotics</div><div class="chip cyber">🛡 Cyber</div><div class="chip soft">⌘ Software</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head"><div><div class="label">01 / SELECTED WORK</div><h2>Projects across the <span class="grad">tech stack.</span></h2></div><p>Robotics, research, web products, startups, and interactive builds — organized for recruiters while keeping the portfolio visually clean.</p></div>
+    <div class="grid">
+      <article class="card"><div class="label">3D WEB / HACKATHON</div><h3>Project Abyss</h3><p>Immersive 3D browser experience combining interactive design, visual storytelling, and web technology.</p><div class="tags"><span class="tag">3D Web</span><span class="tag">Hackathon</span><span class="tag">Replit</span></div></article>
+      <article class="card"><div class="label">ROBOTICS / AI</div><h3>AI Cricket Ball Retrieval Robot</h3><p>Robot concept for an automated cricket bowling setup that detects when balls run out, uses camera + sensors to collect balls, refills the machine, and exits the lane for safety.</p><div class="tags"><span class="tag">AI</span><span class="tag">Computer Vision</span><span class="tag">Sensors</span></div></article>
+      <article class="card"><div class="label">STARTUP / CAREER TECH</div><h3>Ascendra</h3><p>Startup concept helping students under 18 discover internships, part-time jobs, and programs, with an AI-powered resume-building tool.</p><div class="tags"><span class="tag">Startup</span><span class="tag">AI</span><span class="tag">Product</span></div></article>
+      <article class="card"><div class="label">SPORTS TECH</div><h3>North America Cricket League Website</h3><p>League website designed to support visibility, information access, and community engagement for NACL.</p><div class="tags"><span class="tag">Web Development</span><span class="tag">Sports Tech</span></div></article>
+      <article class="card"><div class="label">E-COMMERCE</div><h3>Kashish Apparel Website</h3><p>Modern e-commerce build with product collections, customer accounts, wishlist/reviews, order management, owner/admin tools, Supabase data, and payment integration work.</p><div class="tags"><span class="tag">Supabase</span><span class="tag">Full-Stack</span><span class="tag">Responsive</span></div></article>
+      <article class="card"><div class="label">BUSINESS WEB</div><h3>RESA Construction Website</h3><p>Professional construction-services website covering residential projects, remodeling, electrical upgrades, rewiring, lighting, and EV charger installation.</p><div class="tags"><span class="tag">Web Design</span><span class="tag">Responsive UI</span></div></article>
+      <article class="card"><div class="label">ROBOTICS RESEARCH</div><h3>The Growing Impact of Robotics Across Modern Industries</h3><p>Research paper analyzing robotics in medical delivery, household automation, autonomous vehicles, and surgical systems, including cybersecurity, ethics, cost, regulation, and public trust.</p><div class="tags"><span class="tag">Research</span><span class="tag">Autonomous Systems</span><span class="tag">Cybersecurity</span></div></article>
+      <article class="card"><div class="label">WEB APP</div><h3>SoccerHub</h3><p>Live soccer scores, schedules, standings, and team statistics in a centralized experience.</p><div class="tags"><span class="tag">React</span><span class="tag">API</span><span class="tag">Sports Data</span></div></article>
+      <article class="card"><div class="label">UTILITY APP</div><h3>Shia Prayer Time App</h3><p>Mobile-friendly prayer-time experience with daily times, duas, and Islamic calendar features.</p><div class="tags"><span class="tag">Mobile</span><span class="tag">API</span><span class="tag">UI/UX</span></div></article>
+      <article class="card"><div class="label">SEARCH</div><h3>Car Search Engine</h3><p>Vehicle discovery tool for browsing, filtering, and comparing cars.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">Search</span></div></article>
+      <article class="card"><div class="label">AERIAL TECH</div><h3>DJI Drone Project</h3><p>Exploration of drone technology, flight automation, and camera systems.</p><div class="tags"><span class="tag">DJI</span><span class="tag">Drone</span></div></article>
+      <article class="card"><div class="label">FINTECH DEMO</div><h3>Money Demo App</h3><p>Demo finance application focused on tracking and managing money with a clean interface.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">Finance</span></div></article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head"><div><div class="label">02 / EXPERIENCE + PROGRAMS</div><h2>Learning by <span class="grad">doing.</span></h2></div><p>Internships, programs, work, teaching, and hands-on responsibilities that demonstrate reliability, technical curiosity, and real-world execution.</p></div>
+    <div class="timeline">
+      <div class="row"><div class="icon">🎯</div><div><div class="role">Technology Intern</div><h3>10x.in</h3><p>Industry-aligned technology work using modern AI and software tools while building problem-solving and project-execution skills.</p></div></div>
+      <div class="row"><div class="icon">📣</div><div><div class="role">Vibe Marketer Cohort Intern</div><h3>10x</h3><p>AI-assisted marketing, digital strategy, growth tools, and practical product promotion.</p></div></div>
+      <div class="row"><div class="icon">🧠</div><div><div class="role">A.I. Rotation Program</div><h3>Starter School</h3><p>Hands-on AI, entrepreneurship, modern AI tools, and building real projects and business ideas.</p></div></div>
+      <div class="row"><div class="icon">💼</div><div><div class="role">Co-op Program</div><h3>Starter School</h3><p>Industry-style projects modeled on real company assignments, deadlines, requirements, and portfolio-ready delivery.</p></div></div>
+      <div class="row"><div class="icon">🚀</div><div><div class="role">Summer Bootcamp</div><h3>SureStart</h3><p>Technology and entrepreneurship bootcamp where Ascendra was created.</p></div></div>
+      <div class="row"><div class="icon">🏟</div><div><div class="role">Part-Time Staff</div><h3>NACL Sports Center</h3><p>Sports-center operations, facility setup, event support, and cricket programming.</p></div></div>
+      <div class="row"><div class="icon">🏏</div><div><div class="role">Certified Umpire</div><h3>North America Cricket League</h3><p>Officiated matches, applied league rules, made in-game decisions, and supported fair, organized competition.</p></div></div>
+      <div class="row"><div class="icon">🎪</div><div><div class="role">Event Setup Staff</div><h3>Kennetted Jumps</h3><p>Heavy lifting, vehicle loading/unloading, inflatable jump-house setup, equipment transport, site preparation, breakdown, and cleanup.</p></div></div>
+    </div>
+  </section>
+
+  <section id="robotics">
+    <div class="section-head"><div><div class="label">03 / ROBOTICS + ENGINEERING</div><h2>Building systems that <span class="grad">move.</span></h2></div><p>Competitive robotics, engineering challenges, AI-enabled physical systems, and hands-on team experience.</p></div>
+    <div class="grid">
+      <article class="card"><h3>VEX Robotics</h3><p>Competitive robotics experience in building, testing, programming, iterating, and collaborating on engineering challenges.</p></article>
+      <article class="card"><h3>FTC Robotics Team</h3><p>Robot design, construction, programming, autonomous routines, sensors, testing, troubleshooting, and competition preparation.</p></article>
+      <article class="card"><h3>FRC Robotics Team</h3><p>Larger-scale competition robotics involving engineering design, fabrication, programming, troubleshooting, teamwork, and event preparation.</p></article>
+      <article class="card"><h3>MIT Beaver Works CRE[AT]E Challenge</h3><p>Team-based engineering design, prototyping, technical problem solving, and mentor-guided collaboration.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><div><div class="label">04 / LEADERSHIP + EXTRACURRICULARS</div><h2>Technical work with <span class="grad">leadership.</span></h2></div><p>Teaching, team leadership, outreach, sports, and student organizations that strengthen communication and responsibility.</p></div>
+    <div class="grid">
+      <article class="card"><h3>AI Ambassador</h3><p>Teach an Applied AI club at school and run AI outreach in Bay Area communities and libraries, covering practical AI tools, prompting, and real-world applications.</p></article>
+      <article class="card"><h3>Impact Initiative Organization</h3><p>Treasurer & Marketing — budgeting, finance organization, outreach, and marketing for community-focused initiatives.</p></article>
+      <article class="card"><h3>Volunteer & Fundraising Club</h3><p>Treasurer — managed resources, fundraising logistics, and service-project support.</p></article>
+      <article class="card"><h3>Cricket Hub Captain</h3><p>Captain for U13 and U15 teams, supporting teammates, strategy, accountability, and communication.</p></article>
+      <article class="card"><h3>Youth Soccer Captain</h3><p>U11 captain for 2 years and U14 captain for 3 years, developing leadership and team coordination.</p></article>
+      <article class="card"><h3>8th Grade Class Representative</h3><p>Represented classmates, communicated concerns and ideas, and supported school activities.</p></article>
+      <article class="card"><h3>Hackathons, Conferences & Summits</h3><p>Competed in multiple hackathons and attended technology conferences and summits to build projects, learn tools, and connect with tech communities.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><div><div class="label">05 / VOLUNTEERING + COMMUNITY</div><h2>Technology and service with <span class="grad">impact.</span></h2></div><p>Community service, youth development, tech access, teaching, outreach, and hands-on infrastructure work.</p></div>
+    <div class="grid">
+      <article class="card"><h3>Shia Association of Bay Area</h3><p>Community programs, youth activities, food preparation/serving, event organization, kitchen assistance, and guest support.</p></article>
+      <article class="card"><h3>RISE Academy — Soccer Coach</h3><p>Coached U6, U8, U10, and U12 teams for 3 years, leading drills, skills development, teamwork, games, and equipment organization.</p></article>
+      <article class="card"><h3>Cricket Pitch & Ground Development</h3><p>Helped lay cement, install carpet, measure/cut grass, prepare playing areas, and outreach to Bay Area schools for potential cricket fields.</p></article>
+      <article class="card"><h3>Help Aid Africa</h3><p>Supported fundraising, outreach, and service-focused charitable initiatives.</p></article>
+      <article class="card"><h3>Audio & Visual Room / Community Media</h3><p>Installed and maintained audio/video equipment, cameras, and livestream systems so community members could watch events online with strong audio and video quality.</p></article>
+      <article class="card"><h3>Hospital Project</h3><p>Prepared and organized supportive materials for patients and community members receiving care.</p></article>
+      <article class="card"><h3>Sirat Project</h3><p>Read letters and notecards from Muslim prisoners and helped respond to requests for advice, prayer mats, Qurans, religious resources, and other support.</p></article>
+      <article class="card"><h3>IT Support & Tech Support TA</h3><p>Worked under the Director of Technology to troubleshoot devices, support users, and maintain school technology systems.</p></article>
+      <article class="card"><h3>Sunday School Teaching + Tech</h3><p>Helped teach Sunday School while maintaining technology used for classes, presentations, and community programming.</p></article>
+      <article class="card"><h3>Old Device Drive</h3><p>Collected old devices, refurbished usable technology, and prepared donations for shelters, foster homes, orphanages, and underprivileged communities.</p></article>
+      <article class="card"><h3>9th Grade Biology Teacher Assistant</h3><p>Supported students, classroom activities, teacher organization, and academic tasks.</p></article>
+      <article class="card"><h3>Al-Kisa Foundation</h3><p>Organized and prepared Islamic books and educational materials, including sorting, packing, and event support.</p></article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><div><div class="label">06 / SKILLS</div><h2>Across AI, robotics, software, web, and <span class="grad">leadership.</span></h2></div><p>A recruiter-friendly full skills list without duplicates.</p></div>
+    <div class="skills">
+      <span class="skill">Artificial Intelligence (AI)</span><span class="skill">Generative AI</span><span class="skill">Machine Learning</span><span class="skill">Agentic AI Development</span><span class="skill">Prompt Engineering</span><span class="skill">Claude Code</span><span class="skill">Anthropic Claude</span><span class="skill">ChatGPT for Web Developers</span><span class="skill">Robotics</span><span class="skill">Robot Programming</span><span class="skill">Robot Operating System (ROS)</span><span class="skill">Cybersecurity</span><span class="skill">Software Development</span><span class="skill">Application Development</span><span class="skill">Web Services</span><span class="skill">Web Development</span><span class="skill">Web Design</span><span class="skill">Python</span><span class="skill">C++</span><span class="skill">JavaScript</span><span class="skill">TypeScript</span><span class="skill">Object-Oriented Programming (OOP)</span><span class="skill">Object-Oriented Languages</span><span class="skill">Game Development</span><span class="skill">Engineering</span><span class="skill">AutoCAD</span><span class="skill">Computer-Aided Design (CAD)</span><span class="skill">Research & Development (R&D)</span><span class="skill">Digital Marketing</span><span class="skill">Leadership</span><span class="skill">Leadership Development</span><span class="skill">Community Outreach</span><span class="skill">Sports Coaching</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div class="label">07 / CONTACT</div>
+      <h2 style="font-size:clamp(2.5rem,5vw,4.5rem);margin:0 0 18px;letter-spacing:-.05em">Ready for the next <span class="grad">challenge.</span></h2>
+      <p class="sub" style="margin:0 auto 28px;max-width:720px">Open to internships, research, engineering programs, collaborations, and opportunities across AI, robotics, cybersecurity, software, and web development.</p>
+      <div class="cta" style="justify-content:center"><a class="btn primary" href="mailto:kshabbur@gmail.com">Email me</a><a class="btn secondary" href="https://www.linkedin.com/in/shabbur-khan-16a792363/" target="_blank">LinkedIn</a><a class="btn secondary" href="https://github.com/makadamian2010" target="_blank">GitHub</a></div>
+    </div>
+  </section>
+
+  <footer>© 2026 Shabbur Khan — AI • Robotics • Cybersecurity • Software • Web</footer>
+</main>
+</body>
 </html>

@@ -1,34 +1,40 @@
-import { useEffect, useState } from 'react';
-import { ArrowUpRight, Github, Linkedin, Menu, X, Settings2, Sun, Moon, Eye, Phone, Mail, Send } from 'lucide-react';
-import Ambience from './components/Ambience';
-import Hero from './sections/Hero';
-import Projects from './sections/Projects';
-import Research from './sections/Research';
-import { Skills } from './sections/Journey';
-import './lab.css';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  ArrowUpRight,
+  Award,
+  BookOpen,
+  Users,
+  Heart,
+  Briefcase,
+  Code2,
+  Cpu,
+  Wrench,
+  Sparkles,
+  ExternalLink,
+  Calendar,
+  MapPin,
+} from "lucide-react";
 
-const navigation = ['Home', 'About Me', 'Work', 'Experience', 'Robotics', 'Skills', 'Contact', 'Ask Me'];
-const interests = ['Artificial Intelligence', 'Machine Learning', 'Large Language Models (LLMs)', 'Agentic AI', 'Robotics', 'Cybersecurity', 'Software Engineering', 'Web Development', 'Research & Development', 'Entrepreneurship'];
-const experience = [
-  { role: 'AI Security & Software Engineering Intern', company: 'Zyntralynk', text: 'Contributed to research and development initiatives focused on securing and governing enterprise AI agent ecosystems. Explored safe LLM and autonomous-agent deployment through monitoring, permission controls, policy enforcement, and auditability. Supported software and web solutions that improve the transparency, security, and reliability of agentic AI systems.', tags: ['Artificial Intelligence', 'LLMs', 'Agentic AI', 'AI Governance', 'Cybersecurity', 'Software Engineering', 'Web Development', 'Research & Development'] },
-  { role: 'Co-Founder & Web Developer', company: "Faiz's Bunz", text: "Co-founded a small business focused on entrepreneurship, operations, branding, customer engagement, and business development. Designed and developed a professional responsive website focused on product presentation, user experience, and business growth.", tags: ['Entrepreneurship', 'Web Development', 'Frontend Development', 'UI/UX Design', 'Responsive Design', 'React', 'Branding', 'Marketing', 'Leadership'] },
-  { role: 'AI, ML & Cybersecurity Boot Camp', company: 'Technical training', text: 'Completed a technical boot camp exploring artificial intelligence systems, machine learning concepts, cybersecurity principles, and secure technology development.', tags: ['Artificial Intelligence', 'Machine Learning', 'Cybersecurity', 'Secure Software Development', 'AI Systems'] },
-  { role: 'Physical AI & Robotics Bootcamp', company: 'Shine Labs', text: 'Completed a Physical AI & Robotics Bootcamp focused on intelligent physical systems at the intersection of AI, robotics, sensors, automation, and engineering applications.', tags: ['Physical AI', 'Robotics', 'Autonomous Systems', 'Sensors', 'Automation', 'Engineering Design'] },
-  { role: 'Event Setup Staff', company: 'Kennetted Jumps', text: 'Supported event setup and breakdown, including loading, unloading, transporting equipment, site preparation, cleanup, and event-space readiness.', tags: ['Operations', 'Event Support', 'Teamwork'] },
-  { role: 'Part-Time Staff & Certified Umpire', company: 'NACL Sports Center / North America Cricket League', text: 'Supported sports-center operations and cricket programming, event setup, community activities, and officiated league matches as a certified umpire.', tags: ['Operations', 'Sports', 'Leadership', 'Community'] },
-  { role: 'Technology Intern & Vibe Marketer Cohort Intern', company: '10x', text: 'Completed practical, industry-aligned technology projects and a technology-focused marketing cohort exploring AI-assisted content, digital strategy, modern growth tools, and product marketing.', tags: ['AI', 'Software', 'Digital Strategy', 'Marketing'] },
-  { role: 'A.I. Rotation Program & Co-op Program', company: 'Starter School', text: 'Completed hands-on AI and industry-based co-op projects using modern software tools, entrepreneurship concepts, real-company-style requirements, and portfolio-ready delivery.', tags: ['Artificial Intelligence', 'Entrepreneurship', 'Software Development'] },
-  { role: 'Summer Bootcamp', company: 'SureStart', text: 'Completed a technology and entrepreneurship bootcamp and developed Ascendra, a startup concept for helping students under 18 discover internships, jobs, and programs.', tags: ['Startup', 'Career Tech', 'AI', 'Product Development'] },
-];
+/* ─── animation helpers ─── */
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+};
 
-function TagList({ items }) { return <div className="tag-cloud">{items.map(item => <span key={item}>{item}</span>)}</div>; }
-function AboutPanel() { return <section className="panel about-panel"><div className="panel-heading"><p className="eyebrow">01 / ABOUT ME</p><h1>Engineering ideas<br/>into <em>impact.</em></h1></div><div className="profile-grid"><div className="profile-placeholder"><div className="profile-orbit"/><div className="profile-initials">SK</div><span>PHOTO PLACEHOLDER</span><small>Replace this panel with your profile image in <code>src/assets</code>.</small></div><div className="about-copy"><p className="lead">Shabbur Khan</p><p>I am a student engineer and developer passionate about Artificial Intelligence, Robotics, Cybersecurity, Software Development, and Web Technologies. I enjoy building intelligent systems, researching emerging technologies, and creating software solutions that solve real-world problems.</p><div className="identity-line"><span>STUDENT ENGINEER</span><span>DEVELOPER</span><span>RESEARCHER</span></div><TagList items={interests}/></div></div></section>; }
-function ExperiencePanel() { return <section className="panel"><div className="panel-heading"><p className="eyebrow">04 / EXPERIENCE</p><h1>Learning by building.<br/><em>Growing with purpose.</em></h1><p>Technical exploration, product thinking, and community-minded leadership.</p></div><div className="experience-list">{experience.map((item, index) => <article className="experience-card" key={item.role}><div className="experience-index">0{index + 1}</div><div><div className="role-line"><h2>{item.role}</h2><span>{item.company}</span></div><p>{item.text}</p><TagList items={item.tags}/></div></article>)}</div></section>; }
-function RoboticsPanel() { const teams=[['FTC Robotics Team','Contributed to robot design, building, programming, testing, autonomous routines, sensors, and competition preparation.'],['FRC Robotics Team','Gained experience with larger-scale competition robotics, engineering design, fabrication, programming, troubleshooting, teamwork, and event preparation.'],['VEX Robotics','Built, tested, programmed, and iterated on robot systems with teammates during competitive engineering challenges.'],['MIT Beaver Works CRE[AT]E Challenge','Applied engineering design, technical problem solving, prototyping, and collaboration with a team and mentor.'],['Robotics Research','Published exploration of robotics across delivery drones, home robots, autonomous vehicles, and surgical systems, including ethics, cybersecurity, cost, and public trust.']]; return <section className="panel"><div className="panel-heading"><p className="eyebrow">05 / ROBOTICS</p><h1>Intelligence.<br/><em>In motion.</em></h1><p>Competition, prototyping, physical AI, and research across real-world systems.</p></div><div className="experience-list">{teams.map(([role,text],index)=><article className="experience-card" key={role}><div className="experience-index">0{index+1}</div><div><div className="role-line"><h2>{role}</h2><span>ENGINEERING</span></div><p>{text}</p></div></article>)}</div></section>; }
-function ContactPanel() { return <section className="panel contact-panel"><p className="eyebrow"><i className="status-dot"/> OPEN TO NEW POSSIBILITIES</p><h1>Let’s build<br/><em>what comes next.</em></h1><p>A project, a research question, or a new perspective—I’d love to hear about it.</p><a className="contact-email" href="mailto:kshabbur@gmail.com?subject=Portfolio%20Inquiry"><Mail size={20}/>kshabbur@gmail.com<ArrowUpRight/></a><div className="contact-actions"><a href="https://github.com/makadamian2010" target="_blank" rel="noreferrer"><Github/>GitHub</a><a href="https://www.linkedin.com/in/shabbur-khan-16a792363/" target="_blank" rel="noreferrer"><Linkedin/>LinkedIn</a><a href="tel:14086625447"><Phone/>408-662-5447</a></div></section>; }
-function AskPanel() { const [sent, setSent] = useState(false); const [sending, setSending] = useState(false); const submit = async event => { event.preventDefault(); const form = new FormData(event.currentTarget); const name = form.get('name'); const body = `Name: ${name}\nEmail: ${form.get('email')}\nCompany: ${form.get('company') || 'Not provided'}\nReason: ${form.get('reason') || 'Not provided'}\n\nQuestion:\n${form.get('message')}`; const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT; if (endpoint) { setSending(true); try { const response = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: form }); if (!response.ok) throw new Error('Form submission failed'); setSent(true); event.currentTarget.reset(); } catch { window.location.href = `mailto:kshabbur@gmail.com?subject=${encodeURIComponent(`New Portfolio Question From ${name}`)}&body=${encodeURIComponent(body)}`; setSent(true); } finally { setSending(false); } } else { window.location.href = `mailto:kshabbur@gmail.com?subject=${encodeURIComponent(`New Portfolio Question From ${name}`)}&body=${encodeURIComponent(body)}`; setSent(true); } }; return <section className="panel ask-panel"><div className="panel-heading"><p className="eyebrow">07 / ASK ME</p><h1>Start a thoughtful<br/><em>conversation.</em></h1><p>For recruiters, collaborators, researchers, and teams who would like to connect.</p></div><form className="question-form" onSubmit={submit}><label>Name *<input name="name" required autoComplete="name" placeholder="Your name" /></label><label>Email address *<input name="email" type="email" required autoComplete="email" placeholder="you@example.com" /></label><label>Company / Organization <input name="company" autoComplete="organization" placeholder="Optional" /></label><label>Reason for contact <input name="reason" placeholder="Internship, research, collaboration..." /></label><label className="form-wide">Question / Message *<textarea name="message" required rows="6" placeholder="What would you like to ask?" /></label><div className="form-wide form-submit"><button className="primary-link" type="submit" disabled={sending}>{sending ? 'Sending...' : 'Send Question'} <Send size={17}/></button>{sent && <p role="status">Thank you for reaching out! I will get back to you soon.</p>}</div></form><p className="form-note">This form uses a secure Formspree endpoint when configured; otherwise it opens a pre-addressed email draft. No API keys are exposed.</p></section>; }
+const stagger = {
+  visible: { transition: { staggerChildren: 0.08 } },
+};
 
-function LegacyPortfolioContent() {
+const cardItem = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+export default function PortfolioWebsite() {
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [activeSection, setActiveSection] = useState("");
 
@@ -1085,14 +1091,4 @@ function LegacyPortfolioContent() {
       </footer>
     </div>
   );
-}
-
-export default function PortfolioWebsite() {
-  const [tab, setTab] = useState('Home'); const [menu, setMenu] = useState(false); const [settings, setSettings] = useState(false); const [light, setLight] = useState(() => localStorage.getItem('theme') === 'light'); const [contrast, setContrast] = useState(() => localStorage.getItem('contrast') === 'true'); const [loading, setLoading] = useState(true);
-  useEffect(() => { const id = setTimeout(() => setLoading(false), 700); return () => clearTimeout(id); }, []);
-  useEffect(() => { localStorage.setItem('theme', light ? 'light' : 'dark'); localStorage.setItem('contrast', String(contrast)); }, [light, contrast]);
-  useEffect(() => { const move = event => { document.documentElement.style.setProperty('--cursor-x', `${event.clientX}px`); document.documentElement.style.setProperty('--cursor-y', `${event.clientY}px`); }; window.addEventListener('pointermove', move); return () => window.removeEventListener('pointermove', move); }, []);
-  const choose = name => { setTab(name); setMenu(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  const view = { Home: <Hero paused={false} setPaused={() => {}} onNavigate={choose}/>, 'About Me': <AboutPanel/>, Work: <section className="panel work-panel"><div className="panel-heading"><p className="eyebrow">03 / SELECTED WORK</p><h1>Built to be<br/><em>experienced.</em></h1></div><Projects/><Research/></section>, Experience: <ExperiencePanel/>, Robotics: <RoboticsPanel/>, Skills: <section className="panel skills-panel"><Skills/></section>, Contact: <ContactPanel/>, 'Ask Me': <AskPanel/> }[tab];
-  return <div className={`lab-site portfolio-shell ${light ? 'light-theme' : ''} ${contrast ? 'contrast-mode' : ''}`}><div className={`boot-screen ${loading ? '' : 'boot-done'}`} aria-hidden={!loading}><span>SK // SYSTEM ONLINE</span><div/><small>LOADING PORTFOLIO</small></div><div className="cursor-glow" aria-hidden="true"/><a href="#main" className="skip-link">Skip to content</a><nav className="navigation" aria-label="Main navigation"><button className="wordmark" onClick={() => choose('Home')}><span className="brand-symbol">sk<span>↗</span></span><span>SHABBUR KHAN<small>INDEPENDENT CURIOSITY.</small></span></button><div className={`nav-links ${menu ? 'is-open' : ''}`} id="navigation-links">{navigation.map(name => <button key={name} className={tab === name ? 'active' : ''} onClick={() => choose(name)}>{name}</button>)}</div><div className="nav-utilities"><Ambience/><button className="utility settings-toggle" onClick={() => setSettings(!settings)} aria-expanded={settings}><Settings2 size={15}/><span>Settings</span></button><button className="menu-toggle" aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu} aria-controls="navigation-links" onClick={() => setMenu(!menu)}>{menu ? <X/> : <Menu/>}</button></div>{settings && <div className="settings-panel"><button onClick={() => setLight(!light)}>{light ? <Moon size={15}/> : <Sun size={15}/>} {light ? 'Dark mode' : 'Light mode'}</button><button onClick={() => setContrast(!contrast)}><Eye size={15}/> Color Blind Mode: {contrast ? 'On' : 'Off'}</button></div>}</nav><main id="main" className="tab-stage" key={tab}>{view}</main><footer><button onClick={() => choose('Home')} className="brand-symbol">sk↗</button><span>© {new Date().getFullYear()} Shabbur Khan</span><span>ALWAYS LEARNING. ALWAYS BUILDING.</span><a href="mailto:kshabbur@gmail.com">Get in touch <ArrowUpRight size={13}/></a></footer></div>;
 }
