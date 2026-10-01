@@ -167,6 +167,37 @@
   .constellation-grid>.card:hover{transform:translateY(-5px) translateZ(20px)}
   @media(max-width:700px){.menu-toggle{display:block;grid-column:2;grid-row:1}.links{display:none;grid-column:1/-1;grid-row:2;max-width:100%;width:100%;flex-wrap:wrap;overflow:visible;justify-content:flex-start;padding-top:8px}.menu-open .links{display:flex}.menu-open .links a{font-size:.72rem}.links .settings{margin-left:auto}.home-highlights button{min-width:calc(50% - 8px)}.constellation-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.constellation-grid>.card,.constellation-grid>.card:nth-child(3n+2),.constellation-grid>.card:nth-child(3n){grid-column:auto;min-height:0;transform:none}.constellation-grid>.card:last-child:nth-child(odd){grid-column:1/-1}}
   #settingsButton{min-width:44px;min-height:44px;display:grid;place-items:center;position:relative;z-index:90;pointer-events:auto}
+  .links{overflow:visible}
+  @media(max-width:700px){.links{overflow:visible}}
+  .cursor-ring{display:none!important}
+  .cursor-locator{position:fixed;left:0;top:0;width:16px;height:16px;border-radius:50%;pointer-events:none;z-index:1090;opacity:0;background:radial-gradient(circle,rgba(103,232,249,.82) 0%,rgba(103,232,249,.3) 38%,transparent 74%);filter:blur(1px);mix-blend-mode:screen;transform:translate(-50%,-50%);will-change:transform;transition:opacity .15s ease}
+  .cursor-locator.is-visible{opacity:.9}
+  .light .cursor-locator{background:radial-gradient(circle,rgba(8,106,148,.78) 0%,rgba(8,106,148,.26) 38%,transparent 74%);mix-blend-mode:multiply}
+  @media(max-width:700px){.cursor-locator{display:none}}
+  @media(prefers-reduced-motion:reduce){.cursor-locator{display:none}}
+  .click-pulse{position:fixed;left:0;top:0;width:18px;height:18px;border:2px solid var(--cyan);border-radius:50%;pointer-events:none;z-index:1100;transform:translate(-50%,-50%);box-shadow:0 0 18px var(--cyan);animation:clickPulse .55s ease-out forwards}
+  @keyframes clickPulse{0%{opacity:.95;scale:.35}65%{opacity:.65}100%{opacity:0;scale:3.1}}
+  .is-pointer-hover{border-color:var(--cyan)!important;box-shadow:0 0 0 2px var(--glow),0 0 28px var(--glow)!important}
+  .card.is-pointer-hover:before{opacity:1}
+  .btn.is-pointer-hover,.links a.is-pointer-hover,.settings-menu button.is-pointer-hover,.home-highlights button.is-pointer-hover,.learning-node.is-pointer-hover{transform:translateY(-2px);color:var(--cyan);text-shadow:0 0 12px var(--glow)}
+  @media(prefers-reduced-motion:reduce){.click-pulse{animation-duration:.2s}}
+  .connect-panels{grid-template-columns:minmax(0,1.05fr) minmax(0,1.2fr) minmax(220px,.72fr);align-items:stretch}
+  .contact-form-panel,.assistant-panel,.voice-preview{min-width:0}
+  .assistant-panel{display:flex;flex-direction:column}
+  .assistant-messages{min-height:190px;max-height:340px;flex:1;white-space:pre-line}
+  .assistant-form{display:grid;grid-template-columns:minmax(0,1fr) 46px;gap:8px;margin-top:14px;align-items:stretch}
+  .assistant-form input{min-width:0;width:100%;border-radius:12px;background:rgba(5,13,27,.76);color:var(--text);border:1px solid var(--line);padding:12px;font:inherit}
+  .assistant-form input::placeholder{color:var(--muted);opacity:1}
+  .assistant-form .btn{width:46px;min-width:46px;padding:8px;display:grid;place-items:center}
+  .voice-preview{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100%;padding:24px 18px;text-align:center;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 50% 22%,rgba(103,232,249,.12),transparent 42%),linear-gradient(145deg,rgba(16,29,49,.84),rgba(5,12,25,.78));backdrop-filter:blur(18px)}
+  .voice-preview:before,.voice-preview:after{content:"";position:absolute;z-index:-1;width:170px;height:170px;border:1px solid rgba(103,232,249,.13);border-radius:50%;box-shadow:0 0 0 16px rgba(103,232,249,.025),0 0 0 34px rgba(139,92,246,.025)}
+  .voice-preview:before{top:-100px;right:-75px}.voice-preview:after{bottom:-115px;left:-95px}
+  .voice-icon{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 24px;border:1px solid rgba(103,232,249,.27);border-radius:24px;background:linear-gradient(145deg,rgba(103,232,249,.13),rgba(139,92,246,.12));color:var(--cyan);box-shadow:0 0 35px rgba(103,232,249,.1)}
+  .voice-icon svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .voice-preview .label{margin:0 0 9px;font-size:.61rem}.voice-preview h3{margin:0;font-size:clamp(1.15rem,1.8vw,1.55rem)}.voice-preview p{margin:10px 0 13px;color:var(--cyan);font-weight:800;font-size:.84rem;letter-spacing:.04em}.voice-preview-status{max-width:190px;color:var(--muted);font-size:.72rem;line-height:1.55}
+  .light .voice-preview{background:radial-gradient(circle at 50% 22%,rgba(8,106,148,.09),transparent 42%),rgba(247,251,255,.92);color:#102238}.light .voice-preview p{color:#075d74}.light .voice-preview-status{color:#4d647a}.light .assistant-form input{background:#f7fbfd;color:#102238}.light .assistant-form input::placeholder{color:#5b7185}
+  @media(max-width:900px){.connect-panels{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.contact-form-panel{grid-column:1/-1}.voice-preview{min-height:250px}}
+  @media(max-width:700px){.connect-panels{grid-template-columns:1fr}.contact-form-panel{grid-column:auto}.voice-preview{min-height:240px}}
 </style>
 </head>
 <body>
@@ -302,7 +333,41 @@
       <h2 style="font-size:clamp(2.5rem,5vw,4.5rem);margin:0 0 18px;letter-spacing:-.05em">Ready for the next <span class="grad">challenge.</span></h2>
       <p class="sub" style="margin:0 auto 28px;max-width:720px">Open to internships, research, engineering programs, collaborations, and opportunities across AI, robotics, cybersecurity, software, and web development.</p>
       <div class="cta" style="justify-content:center"><a class="btn primary" href="mailto:kshabbur@gmail.com">Email me</a><a class="btn secondary" href="https://www.linkedin.com/in/shabbur-khan-16a792363/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="btn secondary" href="https://github.com/makadamian2010" target="_blank" rel="noopener noreferrer">GitHub</a></div>
-      <div class="connect-panels"><form class="form-grid" id="contactForm"><div class="label full">CONTACT ME / SEND A MESSAGE</div><label>Name *<input required name="name" autocomplete="name"></label><label>Email Address *<input required type="email" name="email" autocomplete="email"></label><label class="full">Message *<textarea required name="message" rows="4"></textarea></label><div class="full"><button class="btn primary" type="submit">Open email draft <span>↗</span></button> <span id="contactStatus" role="status"></span></div></form><div class="assistant-panel"><div class="assistant-heading"><div><div class="label">PORTFOLIO GUIDE / ASK ME</div><h3>Ask about my work</h3></div><span class="assistant-status">● Ready</span></div><p>Send a question about my projects, skills, experience, education, or interests directly to my inbox.</p><div class="assistant-messages" aria-hidden="true"><div class="assistant-message bot-message">Hi! Share a little about yourself and what you’d like to know.</div></div><form class="form-grid ask-email-form" id="questionForm"><label>Name *<input required name="name" autocomplete="name" maxlength="120"></label><label>Email Address *<input required type="email" name="email" autocomplete="email" maxlength="254"></label><label>Company / Organization<input name="company" autocomplete="organization" maxlength="160"></label><label>Reason for Contact<input name="reason" maxlength="160"></label><label class="full">Question / Message *<textarea required name="message" rows="4" maxlength="5000"></textarea></label><div class="full"><button class="btn primary" type="submit" disabled aria-disabled="true">Send Question</button><p class="ask-email-note">Contact form coming soon — for now, please email me directly at <a href="mailto:kshabbur@gmail.com">kshabbur@gmail.com</a>.</p><p id="askMeStatus" role="status" aria-live="polite"></p></div></form></div></div>
+      <div class="connect-panels">
+        <form class="form-grid contact-form-panel" id="contactForm">
+          <div class="label full">CONTACT ME / SEND A MESSAGE</div>
+          <label>Name *<input required name="name" autocomplete="name"></label>
+          <label>Email Address *<input required type="email" name="email" autocomplete="email"></label>
+          <label class="full">Message *<textarea required name="message" rows="4"></textarea></label>
+          <div class="full"><button class="btn primary" type="submit">Open email draft <span>↗</span></button> <span id="contactStatus" role="status"></span></div>
+        </form>
+
+        <section class="assistant-panel" aria-label="Ask Me — AI Portfolio Chatbot">
+          <div class="assistant-heading">
+            <div><div class="label">PORTFOLIO GUIDE / ASK ME</div><h3>Ask about my work</h3></div>
+            <span class="assistant-status">● Ready</span>
+          </div>
+          <p>Explore projects, skills, experience, and education through a quick portfolio chat.</p>
+          <div class="assistant-messages" id="assistantMessages" role="log" aria-live="polite" aria-relevant="additions">
+            <div class="assistant-message bot-message">Hi! Share a little about yourself and what you’d like to know.</div>
+          </div>
+          <form class="assistant-form" id="questionForm">
+            <label class="sr-only" for="assistantInput">Ask about Shabbur’s portfolio</label>
+            <input id="assistantInput" name="message" type="text" autocomplete="off" placeholder="Ask me about Shabbur's projects, skills, experience, or education..." aria-label="Ask me about Shabbur's projects, skills, experience, or education">
+            <button class="btn primary" type="submit" aria-label="Send message" title="Send message"><span aria-hidden="true">➤</span></button>
+          </form>
+        </section>
+
+        <aside class="voice-preview" role="note" aria-label="My Voice Agent — Coming Soon">
+          <div class="voice-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false"><rect x="18" y="7" width="12" height="23" rx="6"></rect><path d="M12 22v2a12 12 0 0 0 24 0v-2M24 36v6M17 42h14"></path></svg>
+          </div>
+          <div class="label">VOICE INTERFACE</div>
+          <h3>My Voice Agent</h3>
+          <p>Coming Soon</p>
+          <span class="voice-preview-status">A new way to explore my work</span>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -496,15 +561,79 @@
     item.addEventListener('click',event=>{if(event.target.closest('a,button'))return;open()});item.addEventListener('keydown',event=>{if(item.getAttribute('role')==='button'&&event.target===item&&['Enter',' '].includes(event.key)){event.preventDefault();open()}});
   });
 
-  // Ask Me is intentionally paused until the email backend is ready.
+  // Ask Me answers from the portfolio's existing content; messages stay in this page.
   const assistantForm=document.getElementById('questionForm');
-  assistantForm.onsubmit=event=>event.preventDefault();
+  const assistantInput=document.getElementById('assistantInput');
+  const assistantMessages=document.getElementById('assistantMessages');
+  const chatSources=[
+    {pattern:/project|work|build|website|app|site/,selectors:'#projects .card,#robotics .card'},
+    {pattern:/skill|technology|tool|language|programming|code/,selectors:'#skills .card,#skills .skill'},
+    {pattern:/experience|intern|job|teach|leadership|team|club/,selectors:'#experience .row,#activities .card,#community .card'},
+    {pattern:/education|school|course|class|study|learn|college/,selectors:'#courses .learning-node,#courses .learning-detail,#courses .academic-context .card'},
+    {pattern:/robot|vex|ftc|frc|competition/,selectors:'#robotics .card,#awards .milestone-artifact'},
+    {pattern:/ai|machine|agent|datacense/,selectors:'#courses .learning-node[data-learning="ai"],#courses .learning-detail,#awards .milestone-artifact'},
+    {pattern:/about|background|who|shabbur/,selectors:'#about .profile,.about-journey .story-panel'}
+  ];
+  const allChatSources=chatSources.map(group=>group.selectors).join(',');
+  function portfolioAnswer(question){
+    const normalized=question.toLowerCase();
+    const groups=chatSources.filter(group=>group.pattern.test(normalized));
+    const selectors=groups.length?[...new Set(groups.flatMap(group=>group.selectors.split(',')))].join(','):allChatSources;
+    const ignore=new Set(['what','with','from','about','tell','show','does','have','your','you','the','and','for','are','can','how','who','this','that','into','some','much','many','please']);
+    const words=normalized.match(/[a-z0-9+#.-]+/g)?.filter(word=>word.length>2&&!ignore.has(word))||[];
+    const results=[...new Set(document.querySelectorAll(selectors))].map((item,index)=>{
+      const heading=item.matches('.skill')?item.textContent.trim():item.querySelector('.role')?.textContent||item.querySelector('h3,h2,strong')?.textContent||item.querySelector('.label')?.textContent||'Portfolio detail';
+      const title=item.querySelector('h3')?.textContent;
+      const description=item.matches('.skill')?'Listed among Shabbur’s portfolio skills.':[...item.querySelectorAll('p,small')].map(node=>node.textContent.trim()).filter(Boolean).join(' ');
+      const body=`${heading} ${title||''} ${description} ${item.innerText}`.toLowerCase();
+      const score=words.reduce((total,word)=>total+(body.includes(word)?1:0),0);
+      return {heading:title?`${heading} — ${title}`:heading,description,score,index};
+    }).filter(item=>item.description).sort((a,b)=>b.score-a.score||a.index-b.index);
+    const selected=results.filter(item=>item.score>0).slice(0,3);
+    const useful=selected.length?selected:groups.length?results.slice(0,2):[];
+    if(!useful.length)return 'I can help you explore Shabbur’s projects, skills, experience, robotics, or education. Try asking about Project Abyss, VEX Robotics, classes, or a specific skill.';
+    return `Here are a few relevant details from Shabbur’s portfolio:\n\n${useful.map(item=>`${item.heading}: ${item.description}`).join('\n\n')}`;
+  }
+  function addChatMessage(kind,text){
+    const message=document.createElement('div');message.className=`assistant-message ${kind}`;message.textContent=text;assistantMessages.append(message);assistantMessages.scrollTop=assistantMessages.scrollHeight;
+  }
+  assistantForm.onsubmit=event=>{
+    event.preventDefault();const question=assistantInput.value.trim();if(!question)return;
+    addChatMessage('user-message',question);assistantInput.value='';
+    const sendButton=assistantForm.querySelector('button[type="submit"]');sendButton.disabled=true;updateHoverTarget();
+    setTimeout(()=>{addChatMessage('bot-message',portfolioAnswer(question));sendButton.disabled=false;assistantInput.focus();updateHoverTarget()},260);
+  };
   document.getElementById('contactForm').onsubmit=event=>{event.preventDefault();const form=new FormData(event.currentTarget),name=form.get('name'),email=form.get('email'),message=form.get('message');document.getElementById('contactStatus').textContent='Opening your email app with this message…';location.href='mailto:kshabbur@gmail.com?subject='+encodeURIComponent('Portfolio message from '+name)+'&body='+encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)};
 
-  // Soft following cursor locator for mouse users; CSS hides it on touch and reduced-motion devices.
-  const ring=document.querySelector('.cursor-ring');document.documentElement.append(ring);let pointerX=innerWidth/2,pointerY=innerHeight/2,ringX=pointerX,ringY=pointerY;
-  const desktopPointer=matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if(desktopPointer&&!reducedMotion){addEventListener('pointermove',event=>{pointerX=event.clientX;pointerY=event.clientY},{passive:true});function moveRing(){ringX+=(pointerX-ringX)*.16;ringY+=(pointerY-ringY)*.16;ring.style.transform=`translate3d(${ringX}px,${ringY}px,0) translate(-50%,-50%)`;requestAnimationFrame(moveRing)}requestAnimationFrame(moveRing)}else ring?.remove();
+  // Keep normal pointer movement plain; only the current target glows and clicks pulse at their viewport position.
+  document.querySelector('.cursor-ring')?.remove();
+  const cursorLocator=document.createElement('i');
+  cursorLocator.className='cursor-locator';
+  cursorLocator.setAttribute('aria-hidden','true');
+  document.documentElement.append(cursorLocator);
+  document.addEventListener('pointermove',event=>{
+    cursorLocator.style.transform=`translate3d(${event.clientX}px,${event.clientY}px,0) translate(-50%,-50%)`;
+    cursorLocator.classList.add('is-visible');
+  },{passive:true});
+  const hoverSelector='a[href],button:not(:disabled),input[type="range"],[role="button"],.card,.row,.learning-node';
+  let hoveredTarget=null,lastPointerPosition=null;
+  function clearHover(){hoveredTarget?.classList.remove('is-pointer-hover');hoveredTarget=null}
+  function updateHoverTarget(){
+    if(!lastPointerPosition||!matchMedia('(hover: hover) and (pointer: fine)').matches)return;
+    const underneath=document.elementFromPoint(lastPointerPosition.x,lastPointerPosition.y);
+    const next=underneath?.closest(hoverSelector)||null;
+    if(next===hoveredTarget)return;
+    clearHover();hoveredTarget=next;hoveredTarget?.classList.add('is-pointer-hover');
+  }
+  document.addEventListener('pointermove',event=>{lastPointerPosition={x:event.clientX,y:event.clientY};updateHoverTarget()},{passive:true});
+  document.addEventListener('pointerout',event=>{if(!event.relatedTarget)clearHover()},true);
+  addEventListener('scroll',updateHoverTarget,{passive:true});
+  document.addEventListener('click',event=>{
+    if(event.detail===0)return;
+    const pulse=document.createElement('i');pulse.className='click-pulse';pulse.setAttribute('aria-hidden','true');
+    pulse.style.left=`${event.clientX}px`;pulse.style.top=`${event.clientY}px`;document.documentElement.append(pulse);
+    setTimeout(()=>pulse.remove(),600);
+  });
 
   showTab(location.hash.slice(1)||'home',false,false);requestAnimationFrame(()=>requestAnimationFrame(()=>{updateIndicator();window.scrollTo({top:0,behavior:'instant'})}));
   if('scrollRestoration' in history)history.scrollRestoration='manual';
