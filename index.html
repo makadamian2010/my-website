@@ -32,9 +32,9 @@
     content:"";
     position:fixed; inset:0; pointer-events:none; z-index:-1;
     background-image:
-      linear-gradient(rgba(148,163,184,.035) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(148,163,184,.035) 1px,transparent 1px);
-    background-size:52px 52px;
+      linear-gradient(rgba(148,163,184,.022) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(148,163,184,.022) 1px,transparent 1px);
+    background-size:64px 64px;
     mask-image:linear-gradient(to bottom,black,transparent 85%);
   }
   a{text-decoration:none;color:inherit}
@@ -286,9 +286,59 @@
   .light .orbit-node{background:rgba(247,251,255,.96);border-color:rgba(15,46,72,.17)}
   @media(max-width:700px){main.wrap:before{inset:5px;border-radius:11px}.section-head{gap:18px;margin-bottom:30px}.section-head p{transform:none}.home-highlights button{padding-right:24px}.skills-grid .card:nth-child(even),#projects .grid>.card:nth-child(2),#projects .grid>.card:nth-child(4n){margin-top:0}.experience-group:nth-of-type(even) .timeline{margin-left:0}.activity-group .grid.constellation-grid>.card,.activity-group .grid.constellation-grid>.mentor-feature,.community-tech .grid.constellation-grid>.card,.community-development .grid.constellation-grid>.card{grid-column:1/-1;transform:none}.core{width:140px;height:50px}.orbit-node{max-width:135px;font-size:.58rem}.visual .o1{width:150px;height:150px;margin:-75px}.visual .o2{width:280px;height:280px;margin:-140px}.visual{border-radius:15px}}
   @media(prefers-reduced-motion:reduce){.orbit-lines path{animation:none}}
+
+  /* Quiet technical depth; the art stays behind the readable interface. */
+  nav,main.wrap{position:relative;z-index:1}
+  nav{position:sticky;top:12px;z-index:50}
+  .technical-backdrop{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;opacity:.42}
+  .technical-backdrop svg{width:100%;height:100%;transform:translate3d(0,var(--backdrop-y,0),0);will-change:transform}
+  .technical-backdrop path{fill:none;stroke:rgba(103,232,249,.18);stroke-width:1}
+  .technical-backdrop circle{fill:#67e8f9;opacity:.42}
+  .lab-trigger{position:absolute;z-index:8;top:16px;right:16px;width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;background:rgba(5,13,27,.82);color:var(--cyan);font:700 .95rem ui-monospace,monospace;cursor:pointer;transition:transform .25s var(--ease),border-color .25s,background .25s,box-shadow .25s}
+  .lab-trigger:hover,.lab-trigger:focus-visible{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 8px 24px rgba(0,0,0,.2),0 0 18px rgba(103,232,249,.12);outline:none}
+  .lab-trigger:after{content:'Research Lab';position:absolute;right:43px;white-space:nowrap;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--text);font:600 .65rem ui-sans-serif,system-ui;letter-spacing:.02em;opacity:0;transform:translateX(4px);transition:opacity .2s,transform .2s;pointer-events:none}
+  .lab-trigger:hover:after,.lab-trigger:focus-visible:after{opacity:1;transform:none}
+  .lab-dialog{width:min(900px,calc(100% - 28px));max-height:min(90vh,860px);padding:0;border:1px solid rgba(148,163,184,.24);border-radius:20px;background:rgba(7,14,28,.96);color:var(--text);box-shadow:0 40px 120px rgba(0,0,0,.55);backdrop-filter:blur(22px);overflow:auto}
+  .lab-dialog::backdrop{background:rgba(2,7,16,.68);backdrop-filter:blur(8px)}
+  .lab-dialog[open]{animation:labReveal .42s var(--ease) both}
+  @keyframes labReveal{from{opacity:0;transform:translateY(16px) scale(.975);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+  .lab-shell{position:relative;padding:clamp(22px,4vw,42px)}
+  .lab-close{position:absolute;top:16px;right:16px;width:38px;height:38px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--text);font-size:1.3rem;cursor:pointer}
+  .lab-close:hover,.lab-close:focus-visible{border-color:var(--cyan);outline:2px solid transparent;box-shadow:0 0 0 3px rgba(103,232,249,.12)}
+  .lab-header{max-width:620px;padding-right:48px}.lab-header h2{margin:0 0 10px;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-.04em}.lab-header p{margin:0;color:var(--muted);line-height:1.65}
+  .lab-interests{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:23px 0 26px}
+  .lab-interest{padding:10px 9px;border-top:1px solid var(--line);color:var(--muted);font-size:.72rem;line-height:1.35}.lab-interest b{display:block;margin-bottom:5px;color:var(--cyan);font:700 .62rem ui-monospace,monospace;letter-spacing:.1em}
+  .lab-workbench{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(220px,.8fr);gap:24px;align-items:center;padding-top:22px;border-top:1px solid var(--line)}
+  .paper-stage{min-width:0;perspective:900px}
+  .paper-stage-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;color:var(--muted);font-size:.74rem}
+  .paper-svg{display:block;width:100%;height:auto;max-height:270px;border:1px solid rgba(148,163,184,.14);border-radius:10px;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(148,163,184,.015));touch-action:none;user-select:none;cursor:grab;transition:filter .2s}
+  .paper-svg:active{cursor:grabbing}
+  .paper-svg .sheet{filter:url(#paperWarp);transform-origin:center;transition:filter .22s}
+  .paper-svg .paper-fill{fill:#e7edf2;stroke:#c0ccd4;stroke-width:1.5}
+  .paper-svg .paper-ink{fill:none;stroke:#284a5b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .paper-svg .paper-copy{fill:#395464;font:600 9px ui-monospace,monospace;letter-spacing:.08em}
+  .paper-svg .paper-crease{fill:none;stroke:#536e7b;stroke-width:2.4;stroke-linecap:round;opacity:var(--crease,0);filter:drop-shadow(0 1px 1px rgba(25,42,54,.28));transition:opacity .18s}
+  .paper-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .paper-controls .btn{padding:10px 12px;font-size:.76rem}
+  .lab-instructions{color:var(--muted);font-size:.83rem;line-height:1.65}.lab-instructions h3{margin:0 0 8px;color:var(--text);font-size:1rem}.lab-instructions p{margin:0 0 14px}
+  .tracking-status{display:block;min-height:2.8em;margin-top:12px;color:var(--muted);font-size:.72rem;line-height:1.45}
+  .tracking-video{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;clip-path:inset(50%)}
+  .light .lab-dialog{background:rgba(247,251,255,.98);border-color:rgba(15,46,72,.18);box-shadow:0 35px 100px rgba(26,60,90,.24)}
+  .light .lab-trigger{background:rgba(247,251,255,.9)}
+  .light .paper-svg{background:linear-gradient(145deg,rgba(18,104,175,.06),rgba(255,255,255,.4))}
+  .story-orbit{transform:translate3d(0,var(--scroll-shift,0),0)}
+  .learning-rail{transform:translate3d(0,var(--scroll-shift,0),0)}
+  .paper-svg .sheet{transform:rotateX(var(--fold-x,0deg)) rotateY(var(--fold-y,0deg));transition:transform .25s var(--ease)}
+  .paper-svg.is-folded{box-shadow:0 20px 44px rgba(0,0,0,.18),inset 0 0 24px rgba(13,37,50,.12)}
+  .light .paper-svg.is-folded{box-shadow:0 18px 38px rgba(19,56,80,.18),inset 0 0 20px rgba(13,37,50,.08)}
+  @media(max-width:760px){.lab-interests{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}.lab-workbench{grid-template-columns:1fr}.paper-svg{max-height:none}.lab-dialog{max-height:92vh}}
+  @media(max-width:420px){.lab-interest{font-size:.66rem;padding:8px 6px}.paper-stage-head{align-items:flex-start;flex-direction:column}}
+  @media(prefers-reduced-motion:reduce){.technical-backdrop svg{transform:none!important}.lab-dialog[open]{animation:none}.lab-trigger,.lab-trigger:after,.paper-svg,.paper-svg .paper-crease{transition:none}}
+  .summit-gallery{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(240px,.65fr);gap:12px;margin-top:16px}.summit-feature{position:relative;min-height:260px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#07101f;cursor:pointer}.summit-feature img{width:100%;height:100%;min-height:260px;display:block;object-fit:cover;transition:opacity .3s,transform .45s var(--ease)}.summit-feature:hover img{transform:scale(1.025)}.summit-caption{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;color:#fff;background:linear-gradient(transparent,rgba(2,7,16,.88));font-size:.76rem}.summit-thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.summit-thumb{padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);cursor:pointer}.summit-thumb img{display:block;width:100%;height:92px;object-fit:cover;opacity:.68;transition:opacity .25s,transform .3s}.summit-thumb:hover img,.summit-thumb.active img{opacity:1;transform:scale(1.04)}.summit-takeaways{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.summit-takeaway{padding:13px;border-top:1px solid var(--cyan);color:var(--muted);font-size:.76rem;line-height:1.5}.summit-takeaway strong{display:block;color:var(--text);margin-bottom:5px}.summit-lightbox{width:min(1100px,calc(100% - 28px));padding:0;border:1px solid var(--line);border-radius:16px;background:rgba(4,9,19,.96);color:var(--text)}.summit-lightbox::backdrop{background:rgba(0,0,0,.78);backdrop-filter:blur(5px)}.summit-lightbox-shell{position:relative;padding:22px}.summit-lightbox-image{display:block;width:100%;max-height:78vh;object-fit:contain}.summit-lightbox-caption{text-align:center;color:var(--muted);padding:12px 50px 2px;font-size:.84rem}.summit-lightbox-close,.summit-lightbox-prev,.summit-lightbox-next{position:absolute;z-index:2;border:1px solid var(--line);border-radius:9px;background:rgba(5,13,27,.78);color:#fff;cursor:pointer}.summit-lightbox-close{right:14px;top:14px;width:38px;height:38px;font-size:1.2rem}.summit-lightbox-prev,.summit-lightbox-next{top:50%;width:42px;height:42px;font-size:1.1rem}.summit-lightbox-prev{left:12px}.summit-lightbox-next{right:12px}.summit-lightbox-close:hover,.summit-lightbox-prev:hover,.summit-lightbox-next:hover{border-color:var(--cyan);color:var(--cyan)}.light .summit-lightbox{background:rgba(247,251,255,.98);color:#102238}.light .summit-lightbox-close,.light .summit-lightbox-prev,.light .summit-lightbox-next{background:rgba(247,251,255,.92);color:#102238}@media(max-width:760px){.summit-gallery{grid-template-columns:1fr}.summit-thumbs{grid-template-columns:repeat(4,1fr)}.summit-thumb img{height:64px}.summit-takeaways{grid-template-columns:1fr 1fr}}@media(max-width:420px){.summit-takeaways{grid-template-columns:1fr}.summit-lightbox-shell{padding:12px}.summit-lightbox-caption{padding-left:35px;padding-right:35px}}
 </style>
 </head>
 <body>
+<div class="technical-backdrop" aria-hidden="true"><svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"><path d="M0 190h160l44 44h190m0 0 54-54h210m0 0 38 38h166M1440 660h-190l-46-46h-182m0 0-56 56H782M170 900V748l58-58h158m0 0v-92l76-76h165M1290 0v154l-46 46h-173m0 0-38 38v109"/><path d="M0 540h104l52-52h102m832-488v96l-72 72v78h-95M1440 330h-126l-52 52v110l-42 42"/><circle cx="160" cy="190" r="3"/><circle cx="448" cy="234" r="3"/><circle cx="650" cy="180" r="3"/><circle cx="1022" cy="218" r="3"/><circle cx="1058" cy="614" r="3"/><circle cx="386" cy="690" r="3"/><circle cx="252" cy="488" r="3"/><circle cx="1132" cy="200" r="3"/></svg></div>
 <nav>
   <div class="brand"><div class="logo">SK</div><div><strong>Shabbur Khan</strong><small>Robotics &amp; AI/ML Enthusiast | Web &amp; App Developer | Cybersecurity<br><span>Building intelligent software, agents, and real-world tech.</span></small></div></div>
   <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
@@ -321,6 +371,7 @@
         <button class="orbit-node" data-title="Data Science — an interest" data-description="Interested in how data analysis can reveal patterns and support better questions. This is an interest, not a claim of experience or credentials."><span aria-hidden="true">▥</span><b>Data Science</b></button>
       </div>
       <div class="orbit-caption" aria-live="polite"><strong>Six fields, one technical identity</strong><span>Explore how software, physical systems, data, and research connect.</span></div>
+      <button id="researchLabOpen" class="lab-trigger" type="button" aria-label="Open Shabbur’s Research Lab" aria-haspopup="dialog" title="Open Shabbur’s Research Lab">⌘</button>
     </div>
   </section>
 
@@ -355,6 +406,8 @@
       <div class="row"><div class="icon">🧠</div><div><div class="role">A.I. Rotation Program</div><h3>Starter School</h3><p>Hands-on AI, entrepreneurship, modern AI tools, and building real projects and business ideas.</p></div></div>
       <div class="row"><div class="icon">💼</div><div><div class="role">Co-op Program</div><h3>Starter School</h3><p>Industry-style projects modeled on real company assignments, deadlines, requirements, and portfolio-ready delivery.</p></div></div>
       <div class="row"><div class="icon">🚀</div><div><div class="role">Summer Bootcamp</div><h3>SureStart</h3><p>Technology and entrepreneurship bootcamp where Ascendra was created.</p></div></div>
+      <div class="row"><div class="icon">🤖</div><div><div class="role">Physical AI &amp; Robotics Bootcamp</div><h3>Shine Labs</h3><p>Explored physical AI and robotics through hands-on learning, connecting intelligent software with real-world systems.</p></div></div>
+      <div class="row"><div class="icon">✨</div><div><div class="role">AI/ML &amp; Vibecoding Bootcamp</div><h3>Shine Labs</h3><p>Built with AI/ML concepts and vibecoding workflows while learning how to turn ideas into working software.</p></div></div>
       <article class="card program-highlight"><div class="label">TECHNICAL COMMUNITY</div><h3>Hackathons, Conferences &amp; Summits</h3><p>Competed in multiple hackathons and attended technology conferences and summits to build projects, learn tools, and connect with tech communities.</p></article>
     </div></div>
   </section>
@@ -378,20 +431,24 @@
       <article class="card"><h3>Cricket Hub Captain</h3><p>Captain for U13 and U15 teams, supporting teammates, strategy, accountability, and communication.</p></article>
       <article class="card"><h3>Youth Soccer Captain</h3><p>U11 captain for 2 years and U14 captain for 3 years, developing leadership and team coordination.</p></article>
       <article class="card"><h3>8th Grade Class Representative</h3><p>Represented classmates, communicated concerns and ideas, and supported school activities.</p></article>
+      <article class="card"><h3>Green House Captain</h3><p>Served as Green House Captain, leading and motivating house members during school activities, competitions, and team events. Helped coordinate participation, encourage teamwork, and build team spirit while representing the Green House.</p><div class="tags"><span class="tag">Leadership</span><span class="tag">Team Management</span><span class="tag">Communication</span><span class="tag">Teamwork</span><span class="tag">Event Coordination</span><span class="tag">Motivation</span><span class="tag">School Spirit</span></div></article>
     </div></div>
     <div class="activity-group"><h3 class="subsection-title"><span>02</span> Teaching &amp; Technology Mentoring</h3><div class="grid">
       <article class="card"><div class="label">ROBOTICS EDUCATION</div><h3>VEX IQ Robotics Club — Assistant Teacher</h3><p>Assisted teaching in the VEX IQ Robotics Club by supporting students with robot building, programming concepts, troubleshooting, and competition preparation.</p><div class="robotics-photo-grid" aria-label="VEX IQ robotics build photos"><img src="/images/vex-iq-teacher-assistant-1.png" alt="VEX IQ robot build with claw and lift mechanism"><img src="/images/vex-iq-teacher-assistant-2.png" alt="Top view of VEX IQ robot build used during robotics mentoring"></div><div class="tags"><span class="tag">VEX IQ</span><span class="tag">Robotics</span><span class="tag">Teaching</span><span class="tag">Mentorship</span></div></article>
-      <article class="card"><div class="label">TECHNOLOGY EDUCATION</div><h3>IT Support &amp; Tech Support TA</h3><p>Worked under the Director of Technology to troubleshoot devices, support users, and maintain school technology systems.</p><div class="tags"><span class="tag">IT Support</span><span class="tag">Technology Access</span><span class="tag">Community Technology</span></div></article>
+      <article class="card"><div class="label">TECHNOLOGY EDUCATION</div><h3>IT Support &amp; Classroom Technology Assistant</h3><p>Provided hands-on technical support to teachers by helping connect, troubleshoot, and resolve issues with classroom TVs, laptops, and other technology. Assisted with setting up Chromebook charging carts, connecting chargers, organizing cables, and improving cable management to keep classroom technology organized and ready for use.</p><div class="tags"><span class="tag">IT Support</span><span class="tag">Technical Troubleshooting</span><span class="tag">Hardware Setup</span><span class="tag">Classroom Technology</span><span class="tag">Chromebook Management</span><span class="tag">Cable Management</span><span class="tag">Problem-Solving</span></div></article>
       <article class="card"><h3>Sunday School Teaching + Tech</h3><p>Helped teach Sunday School while maintaining technology used for classes, presentations, and community programming.</p></article>
       <article class="card"><h3>9th Grade Biology Teacher Assistant</h3><p>Supported students, classroom activities, teacher organization, and academic tasks.</p></article>
       <article class="card mentor-feature"><div class="label">COMMUNITY TECHNOLOGY / DIGITAL LITERACY</div><h3>Technology &amp; AI Mentor — Senior Citizens</h3><p>Teach senior citizens how to confidently use modern technology and AI tools. Help make technology easier to understand by explaining concepts in simple, practical ways and providing hands-on guidance with digital tools, online resources, and artificial intelligence.</p><div class="tags"><span class="tag">Technology Education</span><span class="tag">Artificial Intelligence</span><span class="tag">Digital Literacy</span><span class="tag">Community Outreach</span><span class="tag">Mentorship</span><span class="tag">Technology Accessibility</span></div></article>
     </div></div>
+    <div class="activity-group"><h3 class="subsection-title"><span>06</span> Technology Events &amp; Conferences</h3><div class="grid"><article class="card summit-card"><div class="label">COMPUTER HISTORY MUSEUM / SILICON VALLEY</div><h3>Niya Summit 2026</h3><p><strong>August 2026 · Attendee</strong></p><p>Attended Niya Summit 2026 at the Computer History Museum in Silicon Valley, where Muslim founders, investors, and innovators came together to discuss artificial intelligence, entrepreneurship, venture capital, and emerging technologies.</p><p>Attended discussions including “The $1 Trillion Unlock” and “Faith, Innovation, and Capital,” explored the summit’s hackathon activities, and connected with professionals working in technology and entrepreneurship.</p><p>Also explored the Computer History Museum’s exhibits, including the Ameca humanoid robot, Pepper social robot, Waymo’s early Firefly self-driving vehicle, and the Chatbots Decoded exhibition. The experience gave me new perspectives on robotics, AI, innovation, and the connection between past inventions and future technologies.</p><div class="summit-gallery" data-gallery="niya"><button class="summit-feature" type="button" data-gallery-index="0"><img src="/images/niya-summit/ameca-robot.png" alt="Ameca humanoid robot exhibit"><span class="summit-caption">Ameca humanoid robot</span></button><div class="summit-thumbs"><button class="summit-thumb active" type="button" data-gallery-index="0"><img src="/images/niya-summit/ameca-robot.png" alt="Ameca humanoid robot exhibit thumbnail"></button><button class="summit-thumb" type="button" data-gallery-index="1"><img src="/images/niya-summit/pepper-robot.png" alt="Pepper social robot exhibit thumbnail"></button><button class="summit-thumb" type="button" data-gallery-index="2"><img src="/images/niya-summit/waymo-firefly.png" alt="Waymo Firefly vehicle exhibit thumbnail"></button><button class="summit-thumb" type="button" data-gallery-index="3"><img src="/images/niya-summit/conference-panel.png" alt="Niya Summit conference panel thumbnail"></button><button class="summit-thumb" type="button" data-gallery-index="4"><img src="/images/niya-summit/speaker-session.png" alt="Niya Summit speaker session thumbnail"></button><button class="summit-thumb" type="button" data-gallery-index="5"><img src="/images/niya-summit/hackathon-space.png" alt="Collaborative event space thumbnail"></button><button class="summit-thumb" type="button" data-gallery-index="6"><img src="/images/niya-summit/trillion-unlock-panel.png" alt="The Trillion Unlock panel thumbnail"></button><button class="summit-thumb" type="button" data-gallery-index="7"><img src="/images/niya-summit/niya-main-stage.png" alt="Niya Summit main stage thumbnail"></button></div></div><div class="summit-takeaways"><div class="summit-takeaway"><strong>Technology &amp; Robotics</strong>Explored humanoid robotics, conversational AI, and autonomous vehicle exhibits.</div><div class="summit-takeaway"><strong>Entrepreneurship</strong>Learned from discussions about startups, investment, and innovation.</div><div class="summit-takeaway"><strong>Networking</strong>Connected with founders, innovators, and professionals.</div><div class="summit-takeaway"><strong>Research &amp; Innovation</strong>Saw how technological developments evolve and influence future engineering opportunities.</div></div><div class="tags"><span class="tag">Artificial Intelligence</span><span class="tag">Robotics</span><span class="tag">Entrepreneurship</span><span class="tag">Innovation</span><span class="tag">Technology Conferences</span><span class="tag">Professional Networking</span></div></article></div></div>
   </section>
 
   <section id="community" class="tab-panel" data-panel="activities">
     <div class="section-head"><div><div class="label">COMMUNITY + SERVICE</div><h2>Showing up for <span class="grad">community.</span></h2></div><p>Service, community technology, and youth development organized by the kind of contribution.</p></div>
     <div class="activity-group"><h3 class="subsection-title"><span>03</span> Community Service</h3><div class="grid">
-      <article class="card"><h3>Shia Association of Bay Area</h3><p>Community programs, youth activities, food preparation/serving, event organization, kitchen assistance, and guest support.</p></article>
+      <article class="card"><div class="label">COMMUNITY HEALTH &amp; WELLNESS</div><h3>Gilroy Lions Club — Volunteer Weight Loss Consultant</h3><p>Volunteered with the Gilroy Lions Club as a Weight Loss Consultant, supporting community members with health and wellness education. Helped encourage healthy lifestyle habits, discussed general wellness goals, and supported community-focused health initiatives.</p><div class="tags"><span class="tag">Community Service</span><span class="tag">Health &amp; Wellness</span><span class="tag">Volunteering</span><span class="tag">Communication</span><span class="tag">Community Outreach</span></div></article>
+      <article class="card"><div class="label">STEM EDUCATION VOLUNTEERING</div><h3>iCode</h3><p><strong>STEM Education Volunteer · 30+ Hours</strong></p><p>Contributed over 30 hours of volunteer service with iCode, an organization focused on making coding, robotics, and STEM education accessible and engaging for young learners. Supported a technology-focused learning environment and gained experience contributing to STEM education initiatives.</p><div class="tags"><span class="tag">30+ Volunteer Hours</span><span class="tag">STEM Education</span><span class="tag">Community Service</span><span class="tag">Technology</span><span class="tag">Volunteering</span></div><a class="btn secondary" style="display:inline-block;margin-top:18px;padding:10px 13px" href="https://icodeschool.com/" target="_blank" rel="noopener noreferrer">Official website ↗</a></article>
+      <article class="card"><div class="label">COMMUNITY VOLUNTEERING</div><h3>Shia Association of Bay Area (SABA)</h3><p><strong>Community Volunteer · 6 Years of Volunteering</strong></p><p>Volunteered for 6 years at the Shia Association of Bay Area (SABA), supporting community events, youth programs, food preparation and serving, event setup, kitchen operations, and guest assistance. Helped keep community activities organized and welcoming for attendees.</p></article>
       <article class="card"><h3>Help Aid Africa</h3><p>Supported fundraising, outreach, and service-focused charitable initiatives.</p></article>
       <article class="card"><h3>Hospital Project</h3><p>Prepared and organized supportive materials for patients and community members receiving care.</p></article>
       <article class="card"><h3>Sirat Project</h3><p>Read letters and notecards from Muslim prisoners and helped respond to requests for advice, prayer mats, Qurans, religious resources, and other support.</p></article>
@@ -417,7 +474,7 @@
   </section>
 
   <section id="about" class="tab-panel" data-panel="about"><div class="section-head"><div><div class="label">01 / ABOUT ME</div><h2>Engineering ideas into <span class="grad">impact.</span></h2></div><p>Student engineer, developer, and researcher building intelligent systems with real-world purpose.</p></div><div class="profile"><div class="avatar"><img src="/images/shabbur-khan-profile.png" alt="Shabbur Khan" style="width:100%;height:100%;object-fit:cover;border-radius:24px"></div><div><h3>Shabbur Khan</h3><p class="sub">I am a student engineer and developer passionate about Artificial Intelligence, Robotics, Cybersecurity, Software Development, and Web Technologies. I enjoy building intelligent systems, researching emerging technologies, and creating software solutions that solve real-world problems.</p><div class="interest-list"><div class="label">AREAS OF INTEREST</div><div class="skills"><span class="skill">Computer Science</span><span class="skill">Robotics</span><span class="skill">AI / Machine Learning</span><span class="skill">Cybersecurity</span><span class="skill">Research</span><span class="skill">Data Science</span><span class="skill">LLMs</span><span class="skill">Agentic AI</span><span class="skill">Machine Learning</span><span class="skill">Web Development</span></div></div></div></div><div class="section-head" style="margin-top:65px"><div><div class="label">PICTURES</div><h2>Moments from the <span class="grad">journey.</span></h2></div><p>Add more images here as your portfolio grows.</p></div><div class="grid"><div class="card" style="min-height:180px;display:grid;place-items:center;color:var(--muted)">Future photo placeholder</div><div class="card" style="min-height:180px;display:grid;place-items:center;color:var(--muted)">Future photo placeholder</div></div></section>
-  <section id="courses" class="tab-panel" data-panel="academics"><div class="section-head"><div><div class="label">07 / ACADEMICS + LEARNING</div><h2>A map of <span class="grad">what I’m learning.</span></h2></div><p>Follow the connections from computer science to AI, robotics, engineering, and research. Select a learning node to explore its related coursework.</p></div><div class="learning-map"><div class="learning-rail" aria-hidden="true"></div><button class="learning-node active" data-learning="computer"><span>01</span><strong>Computer Science</strong><small>Python · C++ · AP CSP</small></button><button class="learning-node" data-learning="ai"><span>02</span><strong>AI & Machine Learning</strong><small>Coursera · Google AI Essentials</small></button><button class="learning-node" data-learning="robotics"><span>03</span><strong>Robotics</strong><small>VEX · FTC · FRC</small></button><button class="learning-node" data-learning="engineering"><span>04</span><strong>Engineering</strong><small>Design · systems · iteration</small></button><button class="learning-node" data-learning="research"><span>05</span><strong>Research</strong><small>Technology · society · culture</small></button><article class="learning-detail card" aria-live="polite"><div class="label">LEARNING NODE / COMPUTER SCIENCE</div><h3>Start with the foundations.</h3><p>AP Computer Science Principles, Python at Foothill College, C++ at Mission College, and software projects provide a base for exploring intelligent and physical systems.</p><div class="tags"><span class="tag">AP Computer Science Principles</span><span class="tag">Python — Foothill College</span><span class="tag">C++ — Mission College</span></div></article></div><div class="grid academic-context"><article class="card"><div class="label">HUMANITIES + SOCIETY</div><h3>People, history, and culture</h3><div class="skills"><span class="skill">AP Seminar</span><span class="skill">Cultural Anthropology</span><span class="skill">World History</span><span class="skill">Sports Nutrition</span></div></article><article class="card"><div class="label">AGENTIC AI ACCELERATOR</div><h3>Datacense</h3><p>Explored how autonomous AI agents can reason, use tools, and solve practical workflows responsibly.</p></article></div></section>
+  <section id="courses" class="tab-panel" data-panel="academics"><div class="section-head"><div><div class="label">07 / ACADEMICS + LEARNING</div><h2>A map of <span class="grad">what I’m learning.</span></h2></div><p>Follow the connections from computer science to AI, robotics, engineering, and research. Select a learning node to explore its related coursework.</p></div><div class="learning-map"><div class="learning-rail" aria-hidden="true"></div><button class="learning-node active" data-learning="computer"><span>01</span><strong>Computer Science</strong><small>Python · C++ · AP CSP</small></button><button class="learning-node" data-learning="ai"><span>02</span><strong>AI & Machine Learning</strong><small>Coursera · Google AI Essentials</small></button><button class="learning-node" data-learning="robotics"><span>03</span><strong>Robotics</strong><small>VEX · FTC · FRC</small></button><button class="learning-node" data-learning="engineering"><span>04</span><strong>Engineering</strong><small>Design · systems · iteration</small></button><button class="learning-node" data-learning="research"><span>05</span><strong>Research</strong><small>Technology · society · culture</small></button><article class="learning-detail card" aria-live="polite"><div class="label">LEARNING NODE / COMPUTER SCIENCE</div><h3>Start with the foundations.</h3><p>AP Computer Science Principles, Python at Foothill College, C++ at Mission College, and software projects provide a base for exploring intelligent and physical systems.</p><div class="tags"><span class="tag">AP Computer Science Principles</span><span class="tag">Python — Foothill College</span><span class="tag">C++ — Mission College</span></div></article></div><div class="grid academic-context"><article class="card"><div class="label">HUMANITIES + SOCIETY</div><h3>People, history, and culture</h3><div class="skills"><span class="skill">AP Seminar</span><span class="skill">Cultural Anthropology</span><span class="skill">World History</span><span class="skill">Sports Nutrition</span></div></article><article class="card"><div class="label">AGENTIC AI ACCELERATOR</div><h3>Datacense</h3><p>Explored how autonomous AI agents can reason, use tools, and solve practical workflows responsibly.</p></article><article class="card"><div class="label">SHINE LABS / BOOTCAMP</div><h3>Physical AI &amp; Robotics</h3><p>Physical AI and robotics bootcamp exploring the connection between intelligent models, sensors, and real-world machines.</p><div class="tags"><span class="tag">Shine Labs</span><span class="tag">Physical AI</span><span class="tag">Robotics</span></div></article><article class="card"><div class="label">SHINE LABS / BOOTCAMP</div><h3>AI/ML &amp; Vibecoding</h3><p>AI/ML and vibecoding bootcamp focused on learning modern AI workflows and building software with rapid iteration.</p><div class="tags"><span class="tag">Shine Labs</span><span class="tag">AI / ML</span><span class="tag">Vibecoding</span></div></article></div></section>
   <section id="awards" class="tab-panel" data-panel="experience"><div class="section-head"><div><div class="label">08 / MILESTONES</div><h2>Milestones along the <span class="grad">way.</span></h2></div><p>A compact index of participation and development. Full descriptions live in Robotics + Engineering, Academics, and Programs.</p></div><div class="milestone-field"><article class="milestone-artifact"><span class="artifact-mark">V5</span><div class="label">ROBOTICS / COMPETITION</div><h3>VEX Robotics</h3><p>Participation details in Robotics + Engineering.</p></article><article class="milestone-artifact"><span class="artifact-mark">MIT</span><div class="label">ENGINEERING CHALLENGE</div><h3>Beaver Works CRE[AT]E</h3><p>Challenge details in Robotics + Engineering.</p></article><article class="milestone-artifact"><span class="artifact-mark">AI</span><div class="label">TECHNICAL DEVELOPMENT</div><h3>Datacense Accelerator</h3><p>Agentic AI exploration details in Academics.</p></article></div></section>
   <section class="tab-panel about-journey" data-panel="about" aria-label="My story">
     <div class="story-grid">
@@ -472,7 +529,29 @@
 
 
   <footer>© 2026 Shabbur Khan — AI • Robotics • Cybersecurity • Software • Web</footer>
-</main><script>const tabs=document.querySelectorAll('.tab-btn'),panels=document.querySelectorAll('[data-panel]');function showTab(id){panels.forEach(p=>p.classList.toggle('active',p.dataset.panel===id));tabs.forEach(t=>t.classList.toggle('active',t.dataset.tab===id));history.replaceState(null,'','#'+id);scrollTo({top:0,behavior:'smooth'})}tabs.forEach(t=>t.onclick=e=>{e.preventDefault();showTab(t.dataset.tab)});document.getElementById('settingsButton').onclick=()=>document.querySelector('.settings').classList.toggle('open');document.getElementById('themeButton').onclick=()=>document.body.classList.toggle('light');document.getElementById('contrastButton').onclick=()=>document.body.classList.toggle('contrast');document.getElementById('audioButton').onclick=e=>e.target.textContent=e.target.textContent.includes('off')?'🔊 Ambient audio on':'🔇 Ambient audio off';document.getElementById('questionForm').onsubmit=e=>{e.preventDefault();let f=new FormData(e.target),n=f.get('name'),b=`Name: ${n}\nEmail: ${f.get('email')}\nCompany: ${f.get('company')}\nReason: ${f.get('reason')}\nQuestion: ${f.get('message')}`;location.href='mailto:kshabbur@gmail.com?subject='+encodeURIComponent('New Portfolio Question From '+n)+'&body='+encodeURIComponent(b);document.getElementById('formStatus').textContent='Thank you for reaching out! I will get back to you soon.'};</script>
+</main>
+<dialog id="researchLab" class="lab-dialog" aria-labelledby="labTitle" aria-describedby="labDescription">
+  <div class="lab-shell">
+    <button class="lab-close" id="researchLabClose" type="button" aria-label="Close research lab">×</button>
+    <header class="lab-header"><div class="label">SHABBUR KHAN / RESEARCH LAB</div><h2 id="labTitle">A workspace for questions.</h2><p id="labDescription">A small interactive map of the six interests that shape my learning. The note below is a playful digital experiment, not a separate project claim.</p></header>
+    <div class="lab-interests" aria-label="Six areas of interest">
+      <div class="lab-interest"><b>01 / BUILD</b>Computer Science</div><div class="lab-interest"><b>02 / MOVE</b>Robotics</div><div class="lab-interest"><b>03 / LEARN</b>AI / ML</div><div class="lab-interest"><b>04 / PROTECT</b>Cybersecurity</div><div class="lab-interest"><b>05 / TEST</b>Research</div><div class="lab-interest"><b>06 / MEASURE</b>Data Science</div>
+    </div>
+    <div class="lab-workbench">
+      <div class="paper-stage">
+        <div class="paper-stage-head"><span>FIELD NOTE / SYSTEMS SKETCH</span><span>Drag from the edge toward the center</span></div>
+        <svg id="paperSheet" class="paper-svg" viewBox="0 0 360 220" role="img" aria-label="Interactive paper note with a simple systems sketch. Drag inward to scrunch it.">
+          <defs><filter id="paperWarp" x="-15%" y="-20%" width="130%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".035 .08" numOctaves="2" seed="8" result="noise"/><feDisplacementMap id="paperDisplacement" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>
+          <g class="sheet"><path class="paper-fill" d="M20 16H340V204H20Z"/><text class="paper-copy" x="40" y="43">QUESTION → MODEL → TEST</text><path class="paper-ink" d="M48 84h55m0 0 12-12m-12 12 12 12m16-12h74m0 0 12-12m-12 12 12 12m16-12h38M76 122h62m0 0 12-12m-12 12 12 12m16-12h92M48 166h112m16 0h126"/><circle class="paper-ink" cx="48" cy="84" r="4"/><circle class="paper-ink" cx="215" cy="84" r="4"/><circle class="paper-ink" cx="48" cy="122" r="4"/><path class="paper-crease" d="M72 20 112 200M174 18 150 202M265 20 228 202M22 90 338 126M24 160 336 62M40 30 322 192M335 50 36 178"/></g>
+        </svg>
+        <div class="paper-controls"><button class="btn secondary" id="scrunchButton" type="button">Crumple note</button><button class="btn secondary" id="restorePaperButton" type="button">Restore note</button></div>
+      </div>
+      <div class="lab-instructions"><h3>Explore with a gesture</h3><p>Use a mouse or touchscreen: press near an edge and drag inward to fold the sheet. You can also use the buttons with a keyboard.</p><button class="btn secondary" id="handTrackingButton" type="button">Enable Hand Tracking</button><button class="btn secondary" id="stopHandTrackingButton" type="button" hidden>Stop Hand Tracking</button><span class="tracking-status" id="trackingStatus" role="status" aria-live="polite">Camera is off. Hand tracking is optional.</span><video class="tracking-video" id="trackingVideo" muted playsinline aria-hidden="true"></video></div>
+    </div>
+  </div>
+</dialog>
+<dialog id="summitLightbox" class="summit-lightbox" aria-label="Niya Summit photo viewer"><div class="summit-lightbox-shell"><button id="summitLightboxClose" class="summit-lightbox-close" type="button" aria-label="Close photo viewer">×</button><button id="summitLightboxPrev" class="summit-lightbox-prev" type="button" aria-label="Previous photo">‹</button><img id="summitLightboxImage" class="summit-lightbox-image" alt=""><button id="summitLightboxNext" class="summit-lightbox-next" type="button" aria-label="Next photo">›</button><div id="summitLightboxCaption" class="summit-lightbox-caption"></div></div></dialog>
+<script>const tabs=document.querySelectorAll('.tab-btn'),panels=document.querySelectorAll('[data-panel]');function showTab(id){panels.forEach(p=>p.classList.toggle('active',p.dataset.panel===id));tabs.forEach(t=>t.classList.toggle('active',t.dataset.tab===id));history.replaceState(null,'','#'+id);scrollTo({top:0,behavior:'smooth'})}tabs.forEach(t=>t.onclick=e=>{e.preventDefault();showTab(t.dataset.tab)});document.getElementById('settingsButton').onclick=()=>document.querySelector('.settings').classList.toggle('open');document.getElementById('themeButton').onclick=()=>document.body.classList.toggle('light');document.getElementById('contrastButton').onclick=()=>document.body.classList.toggle('contrast');document.getElementById('audioButton').onclick=e=>e.target.textContent=e.target.textContent.includes('off')?'🔊 Ambient audio on':'🔇 Ambient audio off';document.getElementById('questionForm').onsubmit=e=>{e.preventDefault();let f=new FormData(e.target),n=f.get('name'),b=`Name: ${n}\nEmail: ${f.get('email')}\nCompany: ${f.get('company')}\nReason: ${f.get('reason')}\nQuestion: ${f.get('message')}`;location.href='mailto:kshabbur@gmail.com?subject='+encodeURIComponent('New Portfolio Question From '+n)+'&body='+encodeURIComponent(b);document.getElementById('formStatus').textContent='Thank you for reaching out! I will get back to you soon.'};</script>
 <script>(()=>{const b=document.body,boot=document.createElement('div'),ring=document.createElement('i');boot.className='boot';ring.className='cursor-ring';boot.textContent='AI PORTFOLIO / INITIALIZING';b.prepend(boot);b.append(ring);['a','b','c'].forEach((_,i)=>{let p=document.createElement('i');p.className='particle';p.style.left=(18+i*27)+'%';p.style.top=(65-i*15)+'%';b.append(p)});addEventListener('pointermove',e=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'});const keys={theme:'sk-theme',contrast:'sk-contrast',audio:'sk-audio'},theme=document.getElementById('themeButton'),contrast=document.getElementById('contrastButton'),audio=document.getElementById('audioButton');let ctx,gain,osc;function label(){theme.textContent=(b.classList.contains('light')?'✓ ':'')+'☀ Light Mode';contrast.textContent=(b.classList.contains('contrast')?'✓ ':'')+'◉ Color Blind Mode';audio.textContent=(osc?'✓ ':'')+'🎧 Ambient Audio '+(osc?'On':'Off')}function save(){localStorage.setItem(keys.theme,b.classList.contains('light'));localStorage.setItem(keys.contrast,b.classList.contains('contrast'));localStorage.setItem(keys.audio,!!osc);label()}if(localStorage.getItem(keys.theme)==='true')b.classList.add('light');if(localStorage.getItem(keys.contrast)==='true')b.classList.add('contrast');theme.onclick=()=>{b.classList.toggle('light');save()};contrast.onclick=()=>{b.classList.toggle('contrast');save()};audio.onclick=()=>{if(osc){osc.stop();ctx.close();osc=null;save();return}ctx=new AudioContext();gain=ctx.createGain();gain.gain.value=.015;gain.connect(ctx.destination);osc=ctx.createOscillator();osc.type='sine';osc.frequency.value=92;osc.connect(gain);osc.start();save()};label()})()</script>
 <script>
 (()=>{
@@ -758,6 +837,140 @@
   showTab(location.hash.slice(1)||'home',false,false);requestAnimationFrame(()=>requestAnimationFrame(()=>{updateIndicator();window.scrollTo({top:0,behavior:'instant'})}));
   if('scrollRestoration' in history)history.scrollRestoration='manual';
   addEventListener('load',()=>setTimeout(()=>{const root=document.documentElement;root.style.scrollBehavior='auto';window.scrollTo(0,0);requestAnimationFrame(()=>root.style.removeProperty('scroll-behavior'))},20),{once:true});
+})();
+</script>
+<script>
+(()=>{
+  const dialog=document.getElementById('researchLab');
+  const openButton=document.getElementById('researchLabOpen');
+  const closeButton=document.getElementById('researchLabClose');
+  const paper=document.getElementById('paperSheet');
+  const paperFill=paper?.querySelector('.paper-fill');
+  const displacement=document.getElementById('paperDisplacement');
+  const scrunchButton=document.getElementById('scrunchButton');
+  const restoreButton=document.getElementById('restorePaperButton');
+  const trackButton=document.getElementById('handTrackingButton');
+  const stopButton=document.getElementById('stopHandTrackingButton');
+  const trackingStatus=document.getElementById('trackingStatus');
+  const video=document.getElementById('trackingVideo');
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const neutralPoints=[[20,16],[180,16],[340,16],[340,110],[340,204],[180,204],[20,204],[20,110]];
+  const foldWaves=[[0,0],[7,-13],[-11,9],[15,3],[-2,13],[-12,-8],[9,11],[-14,-4]];
+  let scrunchAmount=0,pointerDown=false,handStream=null,handLandmarker=null,handFrame=0,lastDetection=0,trackingRequest=0;
+  function paintPaper(amount,settled=false){
+    scrunchAmount=Math.max(0,Math.min(1,amount));
+    const factor=1-scrunchAmount*.72;
+    const points=neutralPoints.map(([x,y],index)=>{
+      const wave=foldWaves[index],vary=index%2===0?1:-.72;
+      return [180+(x-180)*factor+wave[0]*scrunchAmount*vary,110+(y-110)*factor+wave[1]*scrunchAmount*vary];
+    });
+    paperFill.setAttribute('d',`M${points.map(point=>point.join(' ')).join('L')}Z`);
+    displacement.setAttribute('scale',String(Math.round(scrunchAmount*23)));
+    paper.style.setProperty('--crease',String(scrunchAmount*.72));
+    paper.style.setProperty('--fold-x',`${(scrunchAmount*.5).toFixed(2)}deg`);
+    paper.style.setProperty('--fold-y',`${(-scrunchAmount*.8).toFixed(2)}deg`);
+    paper.classList.toggle('is-folded',settled||scrunchAmount>.15);
+    if(settled)trackingStatus.textContent=scrunchAmount>.2?'The paper is folded. Restore it whenever you like.':'The paper is restored.';
+  }
+  function scrunch(){paintPaper(1,true)}
+  function restorePaper(){paintPaper(0,true)}
+  openButton?.addEventListener('click',()=>{if(!dialog.open)dialog.showModal()});
+  closeButton?.addEventListener('click',()=>dialog.close());
+  dialog?.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+  dialog?.addEventListener('close',()=>{if(handStream)stopHandTracking('Camera stopped when the lab closed.');openButton?.focus({preventScroll:true})});
+  scrunchButton?.addEventListener('click',scrunch);
+  restoreButton?.addEventListener('click',restorePaper);
+  paper?.addEventListener('pointerdown',event=>{pointerDown=true;paper.setPointerCapture(event.pointerId);paper.dataset.startX=String(event.clientX);paper.dataset.startY=String(event.clientY);paper.dataset.startAmount=String(scrunchAmount);trackingStatus.textContent='Drag inward to fold the sheet.'});
+  paper?.addEventListener('pointermove',event=>{
+    if(!pointerDown)return;
+    const rect=paper.getBoundingClientRect(),centerX=rect.left+rect.width/2,centerY=rect.top+rect.height/2;
+    const maxDistance=Math.hypot(rect.width*.48,rect.height*.48),distance=Math.hypot(event.clientX-centerX,event.clientY-centerY);
+    const inward=Math.max(0,Math.min(1,1-distance/maxDistance));
+    paintPaper(Math.max(Number(paper.dataset.startAmount||0),inward));
+  });
+  const finishPointer=()=>{if(!pointerDown)return;pointerDown=false;if(scrunchAmount>.16)paintPaper(Math.max(.72,scrunchAmount),true);else paintPaper(0,true)};
+  paper?.addEventListener('pointerup',finishPointer);paper?.addEventListener('pointercancel',finishPointer);paper?.addEventListener('lostpointercapture',finishPointer);
+
+  function stopHandTracking(message='Hand tracking stopped. The camera is off.'){
+    trackingRequest++;
+    if(handFrame)cancelAnimationFrame(handFrame);handFrame=0;
+    handLandmarker?.close();handLandmarker=null;
+    handStream?.getTracks().forEach(track=>track.stop());handStream=null;
+    if(video)video.srcObject=null;
+    if(trackButton)trackButton.hidden=false;
+    if(stopButton)stopButton.hidden=true;
+    if(trackingStatus)trackingStatus.textContent=message;
+  }
+  stopButton?.addEventListener('click',()=>stopHandTracking());
+  async function enableHandTracking(){
+    if(!navigator.mediaDevices?.getUserMedia){trackingStatus.textContent='Camera access is unavailable in this browser. Mouse and touch still work.';return}
+    if(!window.isSecureContext){trackingStatus.textContent='Hand tracking needs a secure HTTPS page. Mouse and touch still work.';return}
+    const requestId=++trackingRequest;
+    trackButton.disabled=true;trackButton.textContent='Requesting camera…';trackingStatus.textContent='Your browser will ask for camera permission. Frames are processed locally and never recorded or uploaded.';
+    try{
+      const grantedStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:640},height:{ideal:480}},audio:false});
+      if(requestId!==trackingRequest){grantedStream.getTracks().forEach(track=>track.stop());return}
+      handStream=grantedStream;
+      video.srcObject=handStream;await video.play();
+      trackingStatus.textContent='Loading the hand-tracking model locally in this browser…';
+      const version='0.10.14',base=`https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${version}`;
+      const vision=await import(`${base}/vision_bundle.mjs`);
+      const files=await vision.FilesetResolver.forVisionTasks(`${base}/wasm`);
+      const detector=await vision.HandLandmarker.createFromOptions(files,{baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task'},runningMode:'VIDEO',numHands:1,minHandDetectionConfidence:.55,minHandPresenceConfidence:.5,minTrackingConfidence:.5});
+      if(requestId!==trackingRequest){detector.close();return}
+      handLandmarker=detector;
+      trackButton.hidden=true;stopButton.hidden=false;trackingStatus.textContent='Hand tracking is on. Pinch your thumb and index finger to scrunch; open them to restore.';
+      const detect=now=>{
+        if(!handStream||!handLandmarker)return;
+        handFrame=requestAnimationFrame(detect);
+        if(now-lastDetection<110||video.readyState<2)return;lastDetection=now;
+        try{
+          const landmarks=handLandmarker.detectForVideo(video,now).landmarks?.[0];
+          if(!landmarks)return;
+          const thumb=landmarks[4],index=landmarks[8],distance=Math.hypot(thumb.x-index.x,thumb.y-index.y);
+          if(distance<.075)paintPaper(1);
+          else if(distance>.15)paintPaper(0);
+        }catch(error){console.warn('Hand tracking frame was skipped.',error)}
+      };
+      lastDetection=0;handFrame=requestAnimationFrame(detect);
+    }catch(error){
+      if(requestId===trackingRequest)stopHandTracking(error?.name==='NotAllowedError'?'Camera permission was declined. You can still use mouse or touch.':'Hand tracking could not start. Check the connection or camera, then use mouse or touch.');
+    }finally{trackButton.disabled=false;if(requestId===trackingRequest)trackButton.textContent='Enable Hand Tracking'}
+  }
+  trackButton?.addEventListener('click',enableHandTracking);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&handStream)stopHandTracking('Camera stopped while this page is in the background.')});
+
+  if(!reducedMotion){
+    const backdrop=document.querySelector('.technical-backdrop');let scheduled=false;
+    const updateDepth=()=>{
+      scheduled=false;const y=Math.min(window.scrollY,1800)*.035;
+      backdrop?.style.setProperty('--backdrop-y',`${y.toFixed(1)}px`);
+      document.querySelectorAll('.story-orbit,.learning-rail').forEach(layer=>{
+        const panel=layer.closest('.story-panel')||layer.closest('.learning-map');
+        if(!panel||!panel.closest('.tab-panel.active')){layer.style.removeProperty('--scroll-shift');return}
+        const rect=panel.getBoundingClientRect(),progress=Math.max(0,Math.min(1,(innerHeight-rect.top)/(innerHeight+rect.height)));
+        layer.style.setProperty('--scroll-shift',`${(progress*-16).toFixed(1)}px`);
+      });
+    };
+    const requestDepth=()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateDepth)}};
+    addEventListener('scroll',requestDepth,{passive:true});addEventListener('resize',requestDepth,{passive:true});
+    document.querySelectorAll('.tab-btn').forEach(tab=>tab.addEventListener('click',()=>requestAnimationFrame(updateDepth)));
+    updateDepth();
+  }
+})();
+ </script>
+<script>
+(()=>{
+  const galleryItems=[
+    ['/images/niya-summit/ameca-robot.png','Ameca humanoid robot exhibit'],['/images/niya-summit/pepper-robot.png','Pepper social robot exhibit'],['/images/niya-summit/waymo-firefly.png','Waymo Firefly autonomous vehicle exhibit'],['/images/niya-summit/conference-panel.png','Niya Summit conference panel and audience'],['/images/niya-summit/speaker-session.png','Niya Summit speaker session'],['/images/niya-summit/hackathon-space.png','Collaborative event space'],['/images/niya-summit/trillion-unlock-panel.png','“The $1 Trillion Unlock” panel'],['/images/niya-summit/niya-main-stage.png','Niya Summit main-stage presentation']
+  ];
+  const box=document.getElementById('summitLightbox'),image=document.getElementById('summitLightboxImage'),caption=document.getElementById('summitLightboxCaption');let current=0;
+  function show(index){current=(index+galleryItems.length)%galleryItems.length;const item=galleryItems[current];image.src=item[0];image.alt=item[1];caption.textContent=`${item[1]} · ${current+1} of ${galleryItems.length}`;document.querySelectorAll('.summit-thumb').forEach((thumb,i)=>thumb.classList.toggle('active',i===current));}
+  document.querySelectorAll('.summit-gallery [data-gallery-index]').forEach(control=>control.addEventListener('click',()=>{show(Number(control.dataset.galleryIndex));box.showModal()}));
+  document.getElementById('summitLightboxClose')?.addEventListener('click',()=>box.close());document.getElementById('summitLightboxPrev')?.addEventListener('click',()=>show(current-1));document.getElementById('summitLightboxNext')?.addEventListener('click',()=>show(current+1));
+  box?.addEventListener('click',event=>{if(event.target===box)box.close()});box?.addEventListener('keydown',event=>{if(event.key==='ArrowLeft')show(current-1);if(event.key==='ArrowRight')show(current+1)});
+  const feature=document.querySelector('.summit-feature');const featureImage=feature?.querySelector('img');const featureCaption=feature?.querySelector('.summit-caption');
+  document.querySelectorAll('.summit-thumb').forEach(thumb=>thumb.addEventListener('click',()=>{const item=galleryItems[Number(thumb.dataset.galleryIndex)];if(featureImage){featureImage.src=item[0];featureImage.alt=item[1]}if(featureCaption)featureCaption.textContent=item[1]}));
 })();
 </script>
 </body>
