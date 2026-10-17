@@ -1,0 +1,29 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-wqRUVXgpUuiJugFUCbfXTzhB2+1Aa3QYxUSv9HcjWd4=' 'sha256-7ylagFPSdL7GthbCUa7Krn4FAL15LtOpNROvPbW9cW8=' 'sha256-q0BygG9FshDZHu15VxT1qge6n0Jn59cYU95YHJ6i0No=' 'sha256-GuzcJeZJWsKpXUFrdwrzh3F+VOzr3A9zlgnmMJjXpjg=' 'sha256-tgTBYrlpnK9MoHWcy4I1U09kvg5hXS8m1oFEyJ+mobw=' 'wasm-unsafe-eval' https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/ https://storage.googleapis.com/mediapipe-models/; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(self), microphone=(), geolocation=()"
+        }
+      ]
+    }
+  ]
+}

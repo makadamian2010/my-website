@@ -1,0 +1,36 @@
+.skills-workbench{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:32px;align-items:start}
+.lab-console{border:1px solid var(--line);background:var(--panel);border-radius:8px;overflow:hidden}
+.lab-status{display:flex;justify-content:space-between;padding:18px;border-bottom:1px solid var(--line);font:11px ui-monospace,monospace;color:var(--muted);letter-spacing:.08em}
+.lab-stage{height:280px;display:grid;place-items:center;perspective:850px;overflow:hidden;background:radial-gradient(ellipse at 50% 75%,rgba(75,135,160,.13),transparent 65%)}
+.lab-assembly{position:relative;width:240px;height:200px;transform-style:preserve-3d;transform:rotateX(60deg) rotateZ(var(--rotation,-25deg));transition:transform .35s ease}
+.lab-assembly>*{position:absolute;transform-style:preserve-3d;box-sizing:border-box}
+.lab-base{width:230px;height:180px;top:15px;left:5px;border:2px solid #7998ac;background:repeating-linear-gradient(90deg,#233242 0 28px,#3e5263 29px 30px);box-shadow:0 12px 0 #17212e,0 20px 35px #0005;border-radius:14px}
+.lab-column{width:48px;height:48px;left:98px;top:80px;background:#899ba8;border:6px solid #334959;transform:translateZ(38px);box-shadow:0 8px 0 #526b7c,0 16px 0 #526b7c,0 24px 0 #526b7c,0 32px 0 #526b7c}
+.lab-joint{width:66px;height:66px;left:89px;top:71px;border-radius:50%;background:#182e3c;border:9px solid #91acb9;transform:translateZ(62px)}
+.lab-arm{width:128px;height:30px;left:112px;top:89px;background:linear-gradient(#acbac4,#405866);border:3px solid #b0cbd4;transform:translateZ(72px) rotateZ(var(--joint,0deg));transform-origin:10px 50%}
+.lab-tool{left:218px;top:83px;width:40px;height:44px;border:7px solid #61b6c3;border-right:0;transform:translateZ(73px);transition:transform .35s}
+.lab-core{left:20px;top:32px;width:55px;height:55px;border:1px solid #85a5b5;background:#172833;color:#b7e4ec;transform:translateZ(10px);display:grid;place-items:center;font:12px ui-monospace,monospace}
+.lab-ring{inset:-18px;border:1px dashed #7998ac70;border-radius:50%;transform:translateZ(1px)}
+.lab-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 18px;border-top:1px solid var(--line);font-size:.75rem}
+.lab-controls label{color:var(--muted)}.lab-controls input{width:110px;accent-color:var(--cyan)}
+.lab-controls button{border:1px solid var(--line);background:transparent;color:var(--text);padding:7px 9px;border-radius:4px;cursor:pointer}
+.lab-disciplines{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.lab-disciplines button{display:flex;align-items:center;gap:9px;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:15px;color:var(--muted);font:inherit;font-size:.76rem;cursor:pointer;line-height:1.5}
+.lab-disciplines button span{font:11px ui-monospace,monospace;opacity:.6}
+.lab-disciplines button[aria-pressed=true]{color:var(--text);background:rgba(111,188,197,.12);box-shadow:inset 3px 0 var(--cyan)}
+.lab-disciplines button[aria-pressed=true] span::after{content:' ✓'}
+.lab-evidence{border-top:2px solid var(--cyan);padding-top:22px;min-width:0}
+.lab-record{border-bottom:1px solid var(--line);padding:16px 0}
+.lab-record summary{cursor:pointer;color:var(--muted);font-size:.85rem;line-height:1.6}
+.lab-record h3{font-size:1.25rem;margin:20px 0 12px}.lab-record p{color:var(--muted);line-height:1.8;font-size:.9rem}
+.lab-record .lab-abilities{color:var(--text);font-size:1rem}
+.lab-record a{display:inline-block;color:var(--cyan);margin:12px 0;text-decoration:underline;text-underline-offset:5px}
+.lab-console.flat .lab-assembly{transform:rotateX(0) rotateZ(0)}.lab-console.flat .lab-assembly>*{transform:none;box-shadow:none}
+#skills :focus-visible,details summary:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.project-spec{border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.project-spec summary{cursor:pointer;font:12px ui-monospace,monospace;color:var(--cyan)}.project-spec dl{display:grid;grid-template-columns:80px 1fr;gap:12px;font-size:.8rem;line-height:1.6}.project-spec dt{color:var(--muted)}.project-spec dd{margin:0}
+#projects .card{border-radius:8px}#projects .project-visual{transition:transform .4s;transform-origin:center;box-shadow:8px 12px 0 rgba(80,112,139,.12)}#projects .card:hover .project-visual{transform:perspective(900px) rotateY(-3deg) translateY(-3px)}
+.light .lab-console{background:#f7fafc}.light .lab-record p,.light .lab-record summary{color:#43556a}.light .lab-record .lab-abilities,.light .lab-controls button{color:#142638}.light .lab-disciplines button[aria-pressed=true]{color:#142638}.light .project-spec summary{color:#08708b}
+.contrast .lab-disciplines button[aria-pressed=true]{outline:2px solid currentColor;outline-offset:-3px}
+@media(max-width:850px){.skills-workbench{grid-template-columns:1fr}.lab-stage{height:250px}.lab-evidence{margin-top:8px}}
+@media(max-width:400px){.lab-disciplines{grid-template-columns:1fr}.lab-controls{gap:8px}}
+@media(prefers-reduced-motion:reduce){.lab-assembly,.lab-tool,#projects .project-visual{transition:none}#projects .card:hover .project-visual{transform:none}}
