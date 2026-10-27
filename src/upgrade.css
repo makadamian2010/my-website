@@ -25,6 +25,7 @@
 .lab-record h3{font-size:1.25rem;margin:20px 0 12px}.lab-record p{color:var(--muted);line-height:1.8;font-size:.9rem}
 .lab-record .lab-abilities{color:var(--text);font-size:1rem}
 .lab-record a{display:inline-block;color:var(--cyan);margin:12px 0;text-decoration:underline;text-underline-offset:5px}
+.experience-company-link{color:var(--text);text-decoration:underline;text-decoration-color:var(--cyan);text-underline-offset:4px}.experience-company-link:hover,.experience-company-link:focus-visible{color:var(--cyan)}
 .lab-console.flat .lab-assembly{transform:rotateX(0) rotateZ(0)}.lab-console.flat .lab-assembly>*{transform:none;box-shadow:none}
 #skills :focus-visible,details summary:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
 .project-spec{border-top:1px solid var(--line);margin-top:22px;padding-top:14px}.project-spec summary{cursor:pointer;font:12px ui-monospace,monospace;color:var(--cyan)}.project-spec dl{display:grid;grid-template-columns:80px 1fr;gap:12px;font-size:.8rem;line-height:1.6}.project-spec dt{color:var(--muted)}.project-spec dd{margin:0}
