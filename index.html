@@ -354,10 +354,10 @@
       <h1>I build technology that <span class="grad">thinks, moves, and solves.</span></h1>
       <p class="sub">Student engineer and developer building intelligent systems across AI, robotics, cybersecurity, and the web.<br/>I turn emerging technology into practical, usable projects.</p>
       <div class="cta">
-        <button class="btn primary" type="button" onclick="showTab('projects')">Explore my work</button>
-        <button class="btn secondary" type="button" onclick="showTab('connect')">Contact / Ask Me</button>
+        <button class="btn primary" type="button" data-nav="projects">Explore my work</button>
+        <button class="btn secondary" type="button" data-nav="connect">Contact / Ask Me</button>
       </div>
-      <div class="home-highlights" aria-label="Featured projects and highlights"><span class="label">FEATURED BUILDS</span><button type="button" onclick="showTab('projects')"><strong>Project Abyss</strong><small>Immersive 3D web</small><b>↗</b></button><button type="button" onclick="showTab('projects')"><strong>Ascendra</strong><small>Student career tech</small><b>↗</b></button><button type="button" onclick="showTab('projects')"><strong>Robotics</strong><small>AI ball retrieval concept</small><b>↗</b></button></div>
+      <div class="home-highlights" aria-label="Featured projects and highlights"><span class="label">FEATURED BUILDS</span><button type="button" data-nav="projects"><strong>Project Abyss</strong><small>Immersive 3D web</small><b>↗</b></button><button type="button" data-nav="projects"><strong>Ascendra</strong><small>Student career tech</small><b>↗</b></button><button type="button" data-nav="projects"><strong>Robotics</strong><small>AI ball retrieval concept</small><b>↗</b></button></div>
     </div>
       <div class="visual orbit-scene" aria-label="An interactive model connecting computer science, robotics, AI and machine learning, cybersecurity, research, and data science">
       <div class="orbit o1"></div><div class="orbit o2"></div>
@@ -634,6 +634,7 @@
     settings?.classList.remove('open');settingsToggle?.setAttribute('aria-expanded','false');
   }
   window.showTab=(id)=>showTab(id,true,true);
+  document.querySelectorAll('[data-nav]').forEach(button=>button.addEventListener('click',()=>showTab(button.dataset.nav,true,true)));
   links.forEach((link,index)=>{
     link.setAttribute('role','tab');link.setAttribute('aria-selected',String(index===0));link.setAttribute('tabindex',index===0?'0':'-1');
     link.onclick=event=>{event.preventDefault();showTab(link.dataset.tab,true,true)};
